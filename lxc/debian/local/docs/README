@@ -1,0 +1,112 @@
+LXC for Debian
+--------------
+
+
+1. Kernel
+
+LXC needs various cgroup related features enabled in the Linux kernel.
+
+If you use a non-Debian kernel, you can check your kernel configuration with the
+lxc-checkconfig tool.
+
+If you use a Debian squeeze kernel, all of the features are enabled except the
+resource controller. This means that you can use LXC but cannot limit the amount
+of RAM used per container. Every container can use as much RAM as the host
+system offers. See http://bugs.debian.org/534964 for more information.
+
+If you use a Debian wheezy kernel or newer, all of the features are enabled
+including the resource controller.
+
+In order to enable the memory controller for Debian wheezy, the following
+boot parameter needs to be used:
+
+	cgroup_enable=memory
+
+In order to enable the swap controller for Debian wheezy, the following
+boot parameter needs to be used:
+
+	swapaccount=1
+
+In order to enable apparmor which lxc can make use of, the following
+boot parameter needs to be used:
+
+	security=apparmor
+
+Note: Kernel versions before 2.6.36 crash when using two bridge network
+interfaces with LXC. If you need more than one bridge on the host system,
+make sure you upgrade your kernel first.
+
+
+2. Cgroup
+
+LXC requires that the cgroup pseudo-filesystem is mounted. This can manually be
+done with the following command, executed as root on the host system:
+
+  # mount cgroup -t cgroup /sys/fs/cgroup
+
+The corresponding entry for /etc/fstab looks like this:
+
+  cgroup /sys/fs/cgroup cgroup defaults 0 0
+
+This will eventually be done automatically as part of the mountkernfs initscript
+in sysvinit. See http://bugs.debian.org/601757 for more information.
+
+
+3. Autostart
+
+LXC container can be automatically started on boot. In order to enable this, the
+container that should be automatically started needs its configuration file
+symlinked (or copied) into the /etc/lxc/auto directory.
+
+Note that the name in /etc/lxc/auto needs to be the container name, e.g.:
+
+  /etc/lxc/auto/www.example.org -> /srv/lxc/containers/www.example.org/config
+
+
+4. Directory
+
+LXC container are stored in /srv/lxc/containers by default. Various components within the
+lxc package assume that the containers are there. Therefore, if you want to move
+the containers to another directory, use:
+
+  # dpkg-reconfigure -plow lxc
+
+and answer the debconf question about the lxc directory accordingly. The package's
+maintainer scripts will take care about updating the /etc/lxc/lxc.conf file.
+
+
+5. Hierarchy of Preseed Files
+
+The lxc-debconfig template script can be fully preseeded. Such preseed files
+can include one or more preseed files themselfs (currently, only one layer of
+includes is supported, no nested or recursive includes).
+
+The general rule of 'the later preseed file overwrites the earlier' applies.
+lxc-debconfig reads the main preseed file (specified either on command line or
+by debconf selection/input dialog) after any included preseed files in there.
+
+That means that debconf values *after* the include statement in the main preseed
+file can overwrite any values specified in the included preseed files.
+
+
+6. Bugs
+
+  * veth not removed on container stop
+
+    When stopping a container, it irregularly but reproducibly happen that the
+    corresponding veth device of the container is not shutdown, making it
+    impossible to start the container again.
+
+    This is caused by a kernel bug not cleaning up veth devices on container
+    collapsing. The veth device is supposed to be go away automatically after
+    some time, definitely after a reboot though.
+
+    A manual workaround is to shutdown the veth device manually with:
+
+      # ip link delete ${VETH_DEVICE}
+
+    There is a patch for it and hopefully landing in linux 3.7, see
+    http://lists.linuxfoundation.org/pipermail/containers/2012-October/030533.html
+    for more information.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Tue, 12 Jul 2011 20:32:16 +0200

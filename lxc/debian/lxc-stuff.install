@@ -1,0 +1,8 @@
+debian/local/bin/*		/usr/bin
+debian/local/etc/lxc.sh		/etc/bash_completion.d
+debian/local/etc/init.d/*	/etc/init.d
+debian/local/etc/irkerhook-lxc	/etc/default
+debian/local/hooks		/usr/share/lxc
+debian/local/examples/*.cfg	/usr/share/doc/lxc-stuff/examples
+debian/local/preseed		/usr/share/lxc
+debian/local/templates		/usr/share/lxc

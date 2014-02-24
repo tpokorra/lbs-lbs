@@ -1,0 +1,43 @@
+#!/bin/sh
+
+set -e
+
+if [ -e /usr/share/lxc/lxc.functions ]
+then
+	. /usr/share/lxc/lxc.functions || true
+fi
+
+globalconf="${globalconf:-/etc/lxc/lxc.conf}"
+lxc_path="${lxc_path:-/srv/lxc/containers}"
+
+case "${1}" in
+	remove)
+		dpkg-divert --package lxc-stuff --quiet --remove --rename --divert /usr/share/lxc/templates/lxc-debian.upstream /usr/share/lxc/templates/lxc-debian
+
+		rmdir --ignore-fail-on-non-empty "${lxc_path}" > /dev/null 2>&1 || true
+		rmdir --ignore-fail-on-non-empty "$(dirname ${lxc_path})" > /dev/null 2>&1 || true
+
+		for _DIRECTORY in "${lxc_path}" /etc/lxc /var/cache/lxc /var/log/lxc
+		do
+			dpkg-statoverride --force --remove "${_DIRECTORY}" > /dev/null 2>&1 || true
+		done
+		;;
+
+	purge)
+		rm -f "${globalconf}"
+		rmdir --ignore-fail-on-non-empty "$(dirname ${globalconf})" > /dev/null 2>&1 || true
+		;;
+
+	upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+
+		;;
+
+	*)
+		echo "postrm called with unknown argument \`$1'" >&2
+		exit 1
+		;;
+esac
+
+#DEBHELPER#
+
+exit 0

@@ -1,0 +1,123 @@
+#!/bin/sh
+
+## Copyright (C) 2006-2014 Daniel Baumann <mail@daniel-baumann.ch>
+##
+## This program comes with ABSOLUTELY NO WARRANTY; for details see COPYING.
+## This is free software, and you are welcome to redistribute it
+## under certain conditions; see COPYING for details.
+
+
+set -e
+
+_PROGRAM="${1}"
+
+if [ -n "${_PROGRAM}" ]
+then
+	shift
+else
+	echo "Usage: ${0} PROGRAM CONTAINER|all [OPTIONS]"
+	exit 1
+fi
+
+if [ ! -x "$(which lxc-${_PROGRAM} 2>/dev/null)" ]
+then
+	echo "E: lxc-${_PROGRAM} - no such program" >&2
+	exit 1
+fi
+
+_CONTAINERS="${1}"
+
+if [ -n "${_CONTAINERS}" ]
+then
+	shift
+
+	case "${_CONTAINERS}" in
+		all)
+			_CONTAINERS="$(lxc-ls)"
+			;;
+	esac
+fi
+
+_OPTIONS="${@}"
+
+case "${_PROGRAM}" in
+	list|ls|version)
+		# programs do not require any container as argument
+		lxc-${_PROGRAM} ${_OPTIONS}
+		;;
+
+	*)
+		if [ -z "${_CONTAINERS}" ]
+		then
+			echo "Usage: ${0} PROGRAM CONTAINER|all [OPTIONS]"
+			exit 1
+		fi
+
+		for _CONTAINER in ${_CONTAINERS}
+		do
+			case "${_PROGRAM}" in
+				create)
+					# program does not require an existing container as argument
+					_NAME="--name ${_CONTAINER}"
+					;;
+
+				clone|monitor|wait)
+					# programs do not require an existing container as argument
+					_NAME=""
+					;;
+
+				*)
+					if ! lxc-ls | grep -qs ^${_CONTAINER}$
+					then
+						echo "E: ${_CONTAINER} - no such container" >&2
+						exit 1
+					fi
+
+					_NAME="--name ${_CONTAINER}"
+					;;
+			esac
+
+			# Send IRC notification
+			for _FILE in /etc/default/irkerhook-lxc /etc/default/irkerhook-lxc.d/*
+			do
+				if [ -f "${_FILE}" ]
+				then
+					. "${_FILE}" || true
+				fi
+			done
+
+			case "${IRK_ENABLED}" in
+				true)
+					for LXC_PROGRAM in ${LXC_PROGRAMS}
+					do
+						if [ "${_PROGRAM}" = "${LXC_PROGRAM}" ]
+						then
+							case "${_PROGRAM}" in
+								start|create)
+									_COLOR="03"
+									;;
+
+								stop|kill|destroy)
+									_COLOR="04"
+									;;
+
+								restart)
+									_COLOR="07"
+									;;
+
+								*)
+									_COLOR="00"
+									;;
+							esac
+
+							irkerhook-lxc "\x0312$(hostname -f):\x03 container \x03${_COLOR}${_PROGRAM}\x03 ${_CONTAINER}"
+						fi
+					done
+					;;
+			esac
+
+			# Execute LXC command
+			lxc-${_PROGRAM} ${_NAME} ${_OPTIONS}
+		done
+		;;
+esac

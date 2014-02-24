@@ -1,0 +1,12 @@
+Template: lxc/title
+Type: title
+_Description: Linux Containers: LXC setup
+
+Template: lxc/containers
+Type: string
+_Default: /srv/lxc/containers
+_Description: LXC directory:
+ Please specify the directory that will be used to store the Linux
+ Containers.
+ .
+ If unsure, use /srv/lxc/containers (default).
