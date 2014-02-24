@@ -1,3 +1,7 @@
+lxc (1.0.0~opt1) experimental; urgency=low
+  * building from github, release tag 1.0.0
+ -- Timotheus Pokorra <timotheus.pokorra@solidcharity.com>  Sat, 22 Feb 2014 08:42:08 +0100
+
 lxc (1.0.0~beta1-5) experimental; urgency=low
 
   * Adding support for multiple channels in irkerhook-lxc.
