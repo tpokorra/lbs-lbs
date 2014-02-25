@@ -1,9 +1,8 @@
-apt-get install wget
+#apt-get -y install wget build-essential
 wget https://github.com/lxc/lxc/archive/lxc-1.0.0.tar.gz
 tar xzf lxc-1.0.0.tar.gz
 mv lxc-lxc-1.0.0/* .
-apt-get install build-essential
-apt-get install debhelper dh-autoreconf autotools-dev docbook2x libapparmor-dev liblua5.2-dev libcap-dev  libselinux-dev pkg-config python3-dev
+apt-get -y install debhelper dh-autoreconf autotools-dev docbook2x libapparmor-dev liblua5.2-dev libcap-dev libselinux-dev pkg-config python3-dev
 dpkg-buildpackage -rfakeroot -uc -b
 mkdir -p ~/repo/binary
 cp ../*.deb ~/repo/binary
