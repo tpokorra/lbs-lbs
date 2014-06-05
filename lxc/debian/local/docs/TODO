@@ -1,13 +1,9 @@
 lxc:
-  * add native systemd job to complement sysvinit initscript.
   * update package description
   * add a oem-config hook function.
+  * check apparmor integration
 
 lxc-stuff:
-  * get rid of lxc-initscript by re-adding the same logic to lxc wrapper itself,
-    adding --respect-auto option or something which then is called from the initscript
-    (the only difference between lxc and lxc-initscript is the fancy output and
-    that /etc/lxc/auto is checked).
   * add debconf question about ipv4 forward enabling (already in live-debconfig).
   * clear tty and enable them dynamically
   * integrate example debian packages that contain /usr/share/lxc/cache/*
@@ -23,6 +19,7 @@ lxc-stuff:
   * don't hardcode lxcpath via /etc/lxc/lxc.conf but keep it updated with the
     debconf foo from the lxc package itself.
   * use lxc.functions in debian/local/lxc-* commands
+  * do something about the automatic bridge+dhcpd+resolver-setup use-case
 
 lxc-debconfig:
   * include removal of backup files and such from live-build:share/hooks/*
@@ -36,6 +33,8 @@ lxc-debconfig:
   * write preseed file into /etc/lxc/debconf after lxc-debconfig is done
   * create /etc/lxc/{debian,progress} and respect it depending on mode
   * save last used IP, use this +1 as default for next container
+  * check for already used IPs and give a warning if a container with
+    same ip already exists on the system.
   * add manpage
   * handle mac (arp; local; etc.)
   * guess bridge device

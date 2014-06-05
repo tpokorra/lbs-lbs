@@ -1,3 +1,5 @@
 # bugs.debian.org/204975 (debhelper)
 lxc: postinst-has-useless-call-to-ldconfig
 lxc: postrm-has-useless-call-to-ldconfig
+# avoiding micropackaging
+lxc: package-name-doesnt-match-sonames

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lxc\n"
 "Report-Msgid-Bugs-To: lxc@packages.debian.org\n"
-"POT-Creation-Date: 2014-01-16 15:31+0100\n"
+"POT-Creation-Date: 2014-04-05 11:26+0200\n"
 "PO-Revision-Date: 2012-07-29 08:00+0900\n"
 "Last-Translator: Kenshi Muto <kmuto@debian.org>\n"
 "Language-Team: debian-japanese <debian-japanese@lists.debian.org>\n"
@@ -22,27 +22,21 @@ msgid "Linux Containers: LXC setup"
 msgstr "Linux コンテナ: LXC のセットアップ"
 
 #. Type: string
-#. Default
-#: ../lxc-stuff.templates:2001
-msgid "/srv/lxc/containers"
-msgstr ""
-
-#. Type: string
 #. Description
-#: ../lxc-stuff.templates:2002
+#: ../lxc-stuff.templates:2001
 msgid "LXC directory:"
 msgstr "LXC のディレクトリ:"
 
 #. Type: string
 #. Description
-#: ../lxc-stuff.templates:2002
+#: ../lxc-stuff.templates:2001
 msgid ""
 "Please specify the directory that will be used to store the Linux Containers."
 msgstr "Linux コンテナを格納するのに利用するディレクトリを指定してください。"
 
 #. Type: string
 #. Description
-#: ../lxc-stuff.templates:2002
+#: ../lxc-stuff.templates:2001
 msgid "If unsure, use /srv/lxc/containers (default)."
 msgstr ""
 "よくわからなければ、/srv/lxc/containers を使用してください (デフォルト)。"

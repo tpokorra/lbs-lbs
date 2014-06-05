@@ -52,18 +52,7 @@ This will eventually be done automatically as part of the mountkernfs initscript
 in sysvinit. See http://bugs.debian.org/601757 for more information.
 
 
-3. Autostart
-
-LXC container can be automatically started on boot. In order to enable this, the
-container that should be automatically started needs its configuration file
-symlinked (or copied) into the /etc/lxc/auto directory.
-
-Note that the name in /etc/lxc/auto needs to be the container name, e.g.:
-
-  /etc/lxc/auto/www.example.org -> /srv/lxc/containers/www.example.org/config
-
-
-4. Directory
+3. Directory
 
 LXC container are stored in /srv/lxc/containers by default. Various components within the
 lxc package assume that the containers are there. Therefore, if you want to move
@@ -75,7 +64,7 @@ and answer the debconf question about the lxc directory accordingly. The package
 maintainer scripts will take care about updating the /etc/lxc/lxc.conf file.
 
 
-5. Hierarchy of Preseed Files
+4. Hierarchy of Preseed Files
 
 The lxc-debconfig template script can be fully preseeded. Such preseed files
 can include one or more preseed files themselfs (currently, only one layer of
@@ -89,7 +78,7 @@ That means that debconf values *after* the include statement in the main preseed
 file can overwrite any values specified in the included preseed files.
 
 
-6. Bugs
+5. Bugs
 
   * veth not removed on container stop
 

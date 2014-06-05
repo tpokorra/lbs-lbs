@@ -202,18 +202,16 @@ Configure_system ()
 				esac
 			done
 			;;
+	esac
 
-		*)
-			if [ "${_APT_RECOMMENDS}" = "false" ]
-			then
+	if [ "${_APT_RECOMMENDS}" = "false" ]
+	then
 
 cat > "${_ROOTFS}/etc/apt/apt.conf.d/recommends.conf" << EOF
 APT::Install-Recommends "false";
 EOF
 
-			fi
-			;;
-	esac
+	fi
 
 	# Configure fstab
 
@@ -313,7 +311,7 @@ EOF
 	# Preseed live-debconfig
 cat > "${_ROOTFS}/preseed.cfg" << EOF
 # multiselect
-live-debconfig live-debconfig/components multiselect hostname, ifupdown, ${_INITSYSTEM}, util-linux, rsyslog, selinux, openssh-server
+live-debconfig live-debconfig/components multiselect hostname, ifupdown, ${_INITSYSTEM}, util-linux, rsyslog, openssh-server
 
 # passwd
 live-debconfig live-debconfig/passwd/root-password string ${_ROOT_PASSWORD}
@@ -331,8 +329,9 @@ live-debconfig live-debconfig/util-linux/hwclockaccess boolean false
 # rsyslog
 live-debconfig live-debconfig/rsyslog/imklog boolean false
 
-# selinux
-live-debconfig live-debconfig/selinux/enable boolean false
+# openssh-server
+live-debconfig live-debconfig/openssh-server/lxc-enable boolean true
+
 EOF
 
 	if [ -n "${_PRESEED_FILE}" ]
@@ -783,6 +782,19 @@ cat >> "${_PATH}/config" << EOF
 # ${_PATH}/config
 
 ## Container
+EOF
+
+	case "${_AUTO}" in
+		true)
+			echo "lxc.start.auto = 1" >> "${_PATH}/config"
+			;;
+
+		*)
+			echo "lxc.start.auto = 0" >> "${_PATH}/config"
+			;;
+	esac
+
+cat >> "${_PATH}/config" << EOF
 lxc.utsname = ${_NAME}
 lxc.rootfs = ${_PATH}/rootfs
 EOF
@@ -930,12 +942,8 @@ EOF
 			_SOURCE="$(echo ${_ENTRY} | awk '{ print $1 }')"
 			_TARGET="$(echo ${_ENTRY} | awk '{ print $2 }')"
 
-			if [ -f "${_SOURCE}" ]
-			then
-				mkdir -p "${_ROOTFS}/$(dirname ${_TARGET})"
-			else
-				mkdir -p "${_ROOTFS}/${_TARGET}"
-			fi
+			mkdir -p "${_SOURCE}"
+			mkdir -p "${_TARGET}"
 		fi
 	done
 
@@ -1026,16 +1034,6 @@ EOF
 
 		_NUMBER="$((${_NUMBER} + 1))"
 	done
-
-	# Remove configuration symlinks
-	rm -f /etc/lxc/auto/${_NAME} /etc/lxc/auto/${_NAME}.conf
-
-	case "${_AUTO}" in
-		true)
-			mkdir -p /etc/lxc/auto
-			ln -s ${_PATH}/config /etc/lxc/auto/${_NAME}
-			;;
-	esac
 
 	if [ "${?}" -ne 0 ]
 	then
@@ -1198,7 +1196,8 @@ fi
 mkdir -p "${_ROOTFS}"
 
 # Get distributor from template filename
-_MODE="$(basename ${0} | sed -e 's|^lxc-||' -e 's|debconf||')"
+_MODE="$(basename ${0} | sed -e 's|^lxc-||' -e 's|debconfig||')"
+_MODE="${_MODE:-debian}"
 export _MODE
 
 # Configure local debconf

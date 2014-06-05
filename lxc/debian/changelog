@@ -1,6 +1,141 @@
-lxc (1.0.0~opt1) experimental; urgency=low
-  * building from github, release tag 1.0.0
- -- Timotheus Pokorra <timotheus.pokorra@solidcharity.com>  Sat, 22 Feb 2014 08:42:08 +0100
+lxc (1.0.3-2) unstable; urgency=low
+
+  * Removing lxc-initscript, not needed anymore.
+  * Updating autostart handling in various tools to use lxc.start.auto.
+  * Building with graphviz (Closes: #749358).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Sun, 01 Jun 2014 20:13:48 +0200
+
+lxc (1.0.3-1) unstable; urgency=low
+
+  * Merging upstream version 1.0.3.
+  * Refreshing lxc-sigint.patch.
+  * Manually passing systemd unit directory to install command since
+    upstream fails to do handle that properly.
+  * Updating lxc.install for /usr/sbin/init.lxc.
+  * Adding update-rc.d integration for sysvinit script.
+  * Adding remote_fs depends in irkerhook-lxc initscript.
+  * Adding dummy restart target in irkerhook-lxc initscript.
+  * Adding dummy force-reload target in irkerhook-lxc initscript.
+  * Correcting formating typo in copyright file.
+  * Adding lxc-stuff lintian overrides.
+  * Updating lxc lintian overrides.
+  * Adding patch to add missing shebang in lxc-patch.py.
+  * Updating preseed files for live-debconfig 4.0~alpha32-1.
+  * Don't mount fuse into the container, will fail if fuse isn't
+    installed.
+  * Correcting default mode in lxc-debconfig when being run on a plain
+    debian system.
+  * Updating manpage version and date headers.
+  * Dropping automatic enabling of selinux handling in lxc-debconfig
+    through live-debconfig.
+  * Also automatically preseed openssh-server/lxc-enable for live-
+    debconfig in lxc-debconfig.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Tue, 06 May 2014 19:48:16 +0200
+
+lxc (1.0.0-10) unstable; urgency=low
+
+  * Removing conflicts to libvirt-bin (Closes: #745169).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Mon, 28 Apr 2014 19:29:47 +0200
+
+lxc (1.0.0-9) unstable; urgency=low
+
+  * Adding conflicts to libvirt-bin which messes with cgroups (Closes:
+    #745169).
+  * Adding updates Spanish debconf translations from Camaleón
+    <noelamac@gmail.com> (Closes: #744854).
+  * Configuring systemd service manually since the upstream makefile fails
+    to do that (Closes: #745670).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Sat, 26 Apr 2014 07:47:09 +0200
+
+lxc (1.0.0-8) unstable; urgency=low
+
+  * Building with libseccomp on amd64, armhf, and i386 only (Closes:
+    #744295).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Sat, 12 Apr 2014 20:33:08 +0200
+
+lxc (1.0.0-7) unstable; urgency=low
+
+  * Marking lxc/containers debconf default value as non-translatable
+    (Closes: #743473).
+  * Setting language field in French debconf translation file (Closes:
+    #743471).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Sat, 05 Apr 2014 11:29:49 +0200
+
+lxc (1.0.0-6) unstable; urgency=low
+
+  * Removing lxc-top until lua-alt-getopt is available.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Wed, 02 Apr 2014 22:20:59 +0200
+
+lxc (1.0.0-5) unstable; urgency=low
+
+  * Building with dh --parallel.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Mon, 31 Mar 2014 21:06:52 +0200
+
+lxc (1.0.0-4) experimental; urgency=low
+
+  * Only run irkerhook when irkerhook is actually installed, not just when
+    it's enabled only.
+  * Updating todo file.
+  * Adding patch from Stefan Siegel <siegel.stefan@gmail.com> to make lxc-
+    attach ignore SIGINT (Closes: #740264).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Sat, 01 Mar 2014 12:32:54 +0100
+
+lxc (1.0.0-3) experimental; urgency=low
+
+  * Adding initial Italian debconf translation from Gianluigi Tiesi
+    <sherpya@netfarm.it> (Closes: #740217).
+  * Creating missing lock directory in upstreams sysvinit initscript
+    (Closes: #740216).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Thu, 27 Feb 2014 12:09:38 +0100
+
+lxc (1.0.0-2) experimental; urgency=low
+
+  * Correcting upstreams wrong lsb headers in sysvinit initscript (Closes:
+    #740065).
+  * Correcting upstreams wrong lsb functions in sysvinit initscript
+    (Closes: #740066).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Tue, 25 Feb 2014 19:16:02 +0100
+
+lxc (1.0.0-1) experimental; urgency=low
+
+  * Merging upstream version 1.0.0.
+  * Lowering lxc-stuff recommends to suggests.
+  * Installing lxc-debconfig as lxc-debian in lxc-stuff only on progress-
+    linux.
+  * Dropping lxc bash-completion, upstream has stolen^Wtaken without
+    credit to its original author, Gaé Lucas <gaetanlcs@gmail.com>, the
+    debian version and improved it a bit (*sigh*).
+  * Dropping initscript in lxc-stuff now that upstream has one too.
+  * Including new systemd files in lxc.
+  * Refreshing lxcinitdir.patch.
+  * Adding build-depends to doxygen.
+  * Including apidoc in lxc-dev.
+  * Updating todo file.
+  * Correcting wrong default directory for sysvinit scripts.
+  * Still uploading to experimental since it's completely untested yet,
+    but soon starting migration to unstable (Closes: #739782).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Mon, 24 Feb 2014 16:17:41 +0100
+
+lxc (1.0.0~beta1-6) experimental; urgency=low
+
+  * Choosing default template based on host distribution for lxc-create
+    when using lxc wrapper.
+  * Correcting creation of mount entry directories.
+  * Correcting recommends handling.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Mon, 24 Feb 2014 07:39:45 +0100
 
 lxc (1.0.0~beta1-5) experimental; urgency=low
 

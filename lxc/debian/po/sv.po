@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lxc\n"
 "Report-Msgid-Bugs-To: lxc@packages.debian.org\n"
-"POT-Creation-Date: 2014-01-16 15:31+0100\n"
+"POT-Creation-Date: 2014-04-05 11:26+0200\n"
 "PO-Revision-Date: 2012-05-21 20:41+0100\n"
 "Last-Translator: Martin Bagge / brother <brother@bsnet.se>\n"
 "Language-Team: Swedish <debian-l10n-swedish@lists.debian.org>\n"
@@ -24,26 +24,20 @@ msgid "Linux Containers: LXC setup"
 msgstr "Linux Containers: Inställningar för LXC"
 
 #. Type: string
-#. Default
-#: ../lxc-stuff.templates:2001
-msgid "/srv/lxc/containers"
-msgstr ""
-
-#. Type: string
 #. Description
-#: ../lxc-stuff.templates:2002
+#: ../lxc-stuff.templates:2001
 msgid "LXC directory:"
 msgstr "Katalog för LXC:"
 
 #. Type: string
 #. Description
-#: ../lxc-stuff.templates:2002
+#: ../lxc-stuff.templates:2001
 msgid ""
 "Please specify the directory that will be used to store the Linux Containers."
 msgstr "Ange katalogen som ska användas för att lagra Linux Containers."
 
 #. Type: string
 #. Description
-#: ../lxc-stuff.templates:2002
+#: ../lxc-stuff.templates:2001
 msgid "If unsure, use /srv/lxc/containers (default)."
 msgstr "Om du är osäker använd /srv/lxc/containers (standard)."

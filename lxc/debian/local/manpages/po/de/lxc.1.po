@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lxc\n"
-"POT-Creation-Date: 2014-01-16 15:21+0100\n"
+"POT-Creation-Date: 2014-05-06 20:37+0200\n"
 "PO-Revision-Date: 2010-05-24 09:59+0300\n"
 "Last-Translator: Daniel Baumann <mail@daniel-baumann.ch>\n"
 "Language-Team: none\n"
@@ -24,13 +24,13 @@ msgstr "LXC"
 #. type: TH
 #: en/lxc-debconfig.1:9 en/lxc-list.1:9 en/lxc.1:9
 #, no-wrap
-msgid "2014-01-16"
+msgid "2014-05-06"
 msgstr ""
 
 #. type: TH
 #: en/lxc-debconfig.1:9 en/lxc-list.1:9 en/lxc.1:9
 #, no-wrap
-msgid "1.0.0~alpha3-5"
+msgid "1.0.3-1"
 msgstr ""
 
 #. type: TH
@@ -167,8 +167,8 @@ msgstr "I<OPTIONEN>"
 #. type: Plain text
 #: en/lxc.1:33
 msgid ""
-"specifies options to a program of the Linux Container tools (LXC), see I<lxc>"
-"(7)."
+"specifies options to a program of the Linux Container tools (LXC), see "
+"I<lxc>(7)."
 msgstr ""
 "bezeichnet die Optionen für ein Programm der Linux Container Tools (LXC), "
 "siehe I<lxc>(7)."

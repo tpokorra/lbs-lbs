@@ -1,0 +1,3 @@
+lbs:
+  source:
+    download: ["http://ftp.de.debian.org/debian/pool/main/l/lxc/lxc_1.0.3.orig.tar.xz"]

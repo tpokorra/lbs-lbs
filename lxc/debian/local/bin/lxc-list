@@ -59,7 +59,7 @@ do
 		then
 			printf "  %-55.50s" "${_CONTAINER}"
 
-			if [ -e /etc/lxc/auto/${_CONTAINER} ]
+			if [ "$(grep -Es "^ *lxc.start.auto" "${_LXC_DIRECTORY}/${_CONTAINER}/config" | awk -F= '{ print $2 }')" = "1" ]
 			then
 				printf "%-10.6s" "(auto)"
 			else
