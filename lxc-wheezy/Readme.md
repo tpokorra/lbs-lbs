@@ -1,3 +1,5 @@
-This is taken directly from https://packages.debian.org/sid/lxc.
+This is taken from https://packages.debian.org/sid/lxc.
 
-This only builds on sid at the moment.
+Then it has been modified to remove dependancy on libseccomp, and to deal with missing systemd on Wheezy.
+
+This is intended to build on Wheezy.

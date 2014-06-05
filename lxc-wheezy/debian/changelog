@@ -1,3 +1,7 @@
+lxc (1.0.3~opt-1) unstable; urgency=low
+  * removing dependancy on libseccomp which does not exist on Debian Squeeze
+ -- Timotheus Pokorra <timotheus.pokorra@solidcharity.com>  Thu, 05 Jun 2014 08:42:08 +0100
+
 lxc (1.0.3-2) unstable; urgency=low
 
   * Removing lxc-initscript, not needed anymore.
