@@ -1,0 +1,4 @@
+/etc/lxc/debconfig
+/usr/share/lxc/cache
+/usr/share/lxc/includes
+/usr/share/lxc/packages

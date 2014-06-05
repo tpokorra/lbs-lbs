@@ -1,0 +1,70 @@
+#!/bin/sh
+
+## lxc-debconfig - LXC template for Debian and Debian Derivatives
+## Copyright (C) 2006-2014 Daniel Baumann <mail@daniel-baumann.ch>
+##
+## This program comes with ABSOLUTELY NO WARRANTY; for details see COPYING.
+## This is free software, and you are welcome to redistribute it
+## under certain conditions; see COPYING for details.
+
+
+set -e
+
+. /usr/share/debconf/confmodule
+
+if [ -n "${_PRESEED_FILE}" ]
+then
+	# user specified one or more preseed files through commandline option
+	db_set lxc-debconfig/preseed-file "${_PRESEED_FILE}"
+	db_fset lxc-debconfig/preseed-file seen true
+elif ls /etc/lxc/debconfig/* > /dev/null 2>&1
+then
+	# user has not specified preseed files through commandline option,
+	# showing debconf selection dialog for global preseed file.
+
+	_FILES="$(cd /etc/lxc/debconfig && find * -not -type d -and -not -name '*.cfg' -and -not -name '*.in' -and -not -name '*.sh')"
+	_PRESEED_FILES="$(for _FILE in ${_FILES}; do echo -n "${_FILE}, "; done | sed -e 's|, $||')"
+
+	if [ -n "${_PRESEED_FILES}" ]
+	then
+		db_subst lxc-debconfig/preseed-files CHOICES "none, custom, , ${_PRESEED_FILES}"
+
+		db_settitle lxc-debconfig/title
+		db_input high lxc-debconfig/preseed-files || true
+		db_go
+
+		db_get lxc-debconfig/preseed-files
+		_PRESEED_FILE="${RET}" # select
+
+		case "${_PRESEED_FILE}" in
+			none|custom)
+				;;
+
+			*)
+				# user specified preseed file through debconf select
+				db_set lxc-debconfig/preseed-file "/etc/lxc/debconfig/${_PRESEED_FILE}"
+				db_fset lxc-debconfig/preseed-file seen true
+				;;
+		esac
+	fi
+fi
+
+case "${_PRESEED_FILE}" in
+	none)
+		;;
+
+	*)
+		# ask user for a preseed file
+		db_settitle lxc-debconfig/title
+		db_input high lxc-debconfig/preseed-file || true
+		db_go
+
+		db_get lxc-debconfig/preseed-file
+		_PRESEED_FILE="${RET}" # string (w/ empty)
+
+		echo "_PRESEED_FILE=\"${_PRESEED_FILE}\"" >> "${_TMPDIR}/debconf.default"
+		export _PRESEED_FILE
+		;;
+esac
+
+db_stop

@@ -1,0 +1,95 @@
+#!/bin/sh
+
+## Copyright (C) 2006-2014 Daniel Baumann <mail@daniel-baumann.ch>
+##
+## This program comes with ABSOLUTELY NO WARRANTY; for details see COPYING.
+## This is free software, and you are welcome to redistribute it
+## under certain conditions; see COPYING for details.
+
+
+set -e
+
+. /usr/share/lxc/lxc.functions
+
+_LXC_DIRECTORY="${lxc_path}"
+
+_OPTIONS="$(getopt -o n:,P: -l name:,lxcpath: -- "${@}")"
+
+if [ "${?}" -ne 0 ]
+then
+	echo "Usage: $(basename ${0}) -n|--name CONTAINER [-P|--lxcpath DIRECTORY]" >&2
+	echo "Usage: $(basename ${0}) -n|--name CONTAINER [-P|--lxcpath DIRECTORY] [SUFFIX]" >&2
+	exit 1
+fi
+
+eval set -- "${_OPTIONS}"
+
+while true
+do
+	case "${1}" in
+		-n|--name)
+			_CONTAINER="${2}"
+			shift 2
+			;;
+
+	        -P|--lxcpath)
+			_LXC_DIRECTORY="${2}"
+			shift 2
+			;;
+
+		--)
+			shift
+			break
+			;;
+
+		*)
+			echo "E: $(basename ${0}): internal error ${0}" >&2
+			exit 1
+			;;
+	esac
+done
+
+if [ -z "${_CONTAINER}" ]
+then
+	echo "E: $(basename ${0}): missing container name, use --name option" >&2
+	exit 1
+fi
+
+if [ ! -d "${_LXC_DIRECTORY}" ]
+then
+	echo "E: ${_LXC_DIRECTORY}: no such directory." >&2
+	exit 1
+fi
+
+if [ ! -x "$(which rsync 2>/dev/null)" ]
+then
+	echo "E: rsync - no such file" >&2
+	exit 1
+fi
+
+if [ ! -x "$(which lxc-info 2>/dev/null)" ]
+then
+	echo "E: lxc-info - no such file" >&2
+	exit 1
+fi
+
+if ! lxc-info -n ${_CONTAINER} -P "${_LXC_DIRECTORY}" 2>&1 | grep -qs "STOPPED"
+then
+	echo "E: ${_CONTAINER} - not stopped" >&2
+	exit 1
+fi
+
+if ls ${_LXC_DIRECTORY}/${_CONTAINER}/rootfs.* > /dev/null 2>&1
+then
+	if [ -n "${2}" ]
+	then
+		_SUFFIX="${2}"
+	else
+		echo "E: No suffix specified."
+	fi
+
+	rsync -aPHv --numeric-ids --delete --progress ${_LXC_DIRECTORY}/${_CONTAINER}/rootfs.${_SUFFIX}/ ${_LXC_DIRECTORY}/${_CONTAINER}/rootfs
+else
+	echo "E: ${_LXC_DIRECTORY}/${_CONTAINER}/rootfs.* - no such directories" >&2
+	exit 1
+fi

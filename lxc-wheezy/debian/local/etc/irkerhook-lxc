@@ -1,0 +1,7 @@
+# /etc/default/irkerhook-lxc
+
+IRK_ENABLED="false"
+
+IRC_CHANNELS="irc://irc.freenode.net:6667/commits irc://irc.oftc.net:6667/commits"
+
+LXC_PROGRAMS="start stop restart kill create destroy"

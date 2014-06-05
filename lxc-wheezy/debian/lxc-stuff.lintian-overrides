@@ -1,0 +1,2 @@
+# false positives from lxc-debconfigs private debconf database
+lxc-stuff: debconf-is-not-a-registry
