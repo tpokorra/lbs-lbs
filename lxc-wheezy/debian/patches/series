@@ -6,3 +6,4 @@
 0006-lxc-sigint.patch
 0007-lxc-patch-shebang.patch
 0008-debian-config.patch
+0009-apparmor.patch

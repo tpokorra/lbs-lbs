@@ -1,9 +1,9 @@
 Author: Daniel Baumann <mail@daniel-baumann.ch>
 Description: Correcting wrong LSB headers in sysvinit script.
 
-diff -Naurp lxc.orig/config/init/sysvinit/lxc lxc/config/init/sysvinit/lxc
---- lxc.orig/config/init/sysvinit/lxc
-+++ lxc/config/init/sysvinit/lxc
+diff -Naurp lxc.orig/config/init/sysvinit/lxc.in lxc/config/init/sysvinit/lxc.in
+--- lxc.orig/config/init/sysvinit/lxc.in
++++ lxc/config/init/sysvinit/lxc.in
 @@ -7,10 +7,17 @@
  #
  ### BEGIN INIT INFO
@@ -22,4 +22,4 @@ diff -Naurp lxc.orig/config/init/sysvinit/lxc lxc/config/init/sysvinit/lxc
 +# X-Interactive:
  ### END INIT INFO
  
- # Source function library.
+ sysconfdir="@SYSCONFDIR@"

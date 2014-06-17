@@ -98,4 +98,13 @@ file can overwrite any values specified in the included preseed files.
     http://lists.linuxfoundation.org/pipermail/containers/2012-October/030533.html
     for more information.
 
+  * warning about memory.use_hierarchy
+
+    When starting a container, depending on your host system it may or may not
+    occur that you recieve the following message:
+
+      lxc-start: Device or resource busy - failed to set memory.use_hierarchy to 1; continuing
+
+    This has been explained by upstream in https://github.com/lxc/lxc/issues/236
+
  -- Daniel Baumann <mail@daniel-baumann.ch>  Tue, 12 Jul 2011 20:32:16 +0200

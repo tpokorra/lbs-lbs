@@ -13,6 +13,7 @@ Build-Depends:
  libapparmor-dev,
  liblua5.2-dev,
  libcap-dev,
+ libseccomp-dev [amd64 armhf i386],
  libselinux-dev,
  linux-libc-dev,
  pkg-config,
@@ -28,9 +29,9 @@ Pre-Depends: multiarch-support
 Depends:
  ${misc:Depends},
  ${shlibs:Depends},
+ ${python3:Depends},
 Recommends:
  lua5.2,
- python3,
  rsync,
 Suggests: lxc-stuff
 Description: Linux Containers userspace tools

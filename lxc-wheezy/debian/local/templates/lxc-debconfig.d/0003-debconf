@@ -996,8 +996,17 @@ case "$(dpkg --print-architecture)" in
 		;;
 
 	i386)
-		# Usage: Architecture Default CHOICES CHOICES_C
-		Architecture "i386"
+		case "$(uname -m)" in
+			x86_64)
+				# Usage: Architecture Default CHOICES CHOICES_C
+				Architecture "amd64" "Automatic, 32-bit PC (i386), 64-bit PC (amd64)" "auto, i386, amd64"
+				;;
+
+			*)
+				# Usage: Architecture Default CHOICES CHOICES_C
+				Architecture "i386"
+				;;
+		esac
 		;;
 esac
 

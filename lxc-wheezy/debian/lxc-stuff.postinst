@@ -18,7 +18,7 @@ case "${1}" in
 		then
 
 cat > "${globalconf}" << EOF
-lxcpath="${lxc_path}"
+lxc.lxcpath="${lxc_path}"
 EOF
 
 		fi
@@ -33,10 +33,10 @@ EOF
 		cp -a -f "${globalconf}" "${globalconf}.tmp"
 
 		test -z "${lxc_path}" || \
-		grep -Eq '^ *lxcpath=' "${globalconf}" || \
-		echo "lxcpath=" >> "${globalconf}"
+		grep -Eq '^ *lxc.lxcpath=' "${globalconf}" || \
+		echo "lxc.lxcpath=" >> "${globalconf}"
 
-		sed -e "s|^ *lxcpath=.*|lxcpath=${lxc_path}|" \
+		sed -e "s|^ *lxc.lxcpath=.*|lxc.lxcpath=${lxc_path}|" \
 		< "${globalconf}" > "${globalconf}.tmp"
 
 		mv -f "${globalconf}.tmp" "${globalconf}"

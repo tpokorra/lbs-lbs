@@ -5,7 +5,7 @@
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
 %:
-	dh ${@} --parallel --with autoreconf,autotools_dev
+	dh ${@} --parallel --with autoreconf,autotools_dev,python3
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
@@ -34,10 +34,7 @@ override_dh_auto_install:
 	mv debian/tmp/usr/bin/lxc-test-* debian/lxc-dev/usr/bin
 
 	# fix systemd service
-	sed -i	-e "s|/usr/libexec/lxc/lxc-devsetup|/usr/lib/$(DEB_HOST_MULTIARCH)/lxc|" \
-		-e "s|/usr/libexec/lxc/lxc-startup start|/usr/bin/lxc-autostart|" \
-		-e "s|/usr/libexec/lxc/lxc-startup stop|/usr/bin/lxc-autostart --shutdown|" \
-	debian/tmp/lib/systemd/system/lxc.service
+	sed -i -e 's|$${prefix}/lib/.*/lxc/|/usr/lib/$(DEB_HOST_MULTIARCH)/lxc/|g' debian/tmp/lib/systemd/system/lxc.service
 
 	# template
 ifeq ($(DEB_VENDOR),Progress Linux)
@@ -57,8 +54,6 @@ override_dh_compress:
 	dh_compress -X.cfg
 
 override_dh_install:
-	# on Debian7, there is no systemd
-	rm debian/tmp/lib/systemd/system/lxc.service
 	dh_install --fail-missing
 
 override_dh_installinit:

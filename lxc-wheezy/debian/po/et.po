@@ -1,0 +1,42 @@
+# Estonian translation of lxc debconf templates.
+# Copyright (C) 2014 Georg Kahest <georg@life.ee>
+# This file is distributed under the same license as the lxc package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: lxc\n"
+"Report-Msgid-Bugs-To: lxc@packages.debian.org\n"
+"POT-Creation-Date: 2014-04-05 11:26+0200\n"
+"PO-Revision-Date: 2014-06-04 \n"
+"Last-Translator: Georg Kahest <georg@life.ee>\n"
+"Language-Team: n/a\n"
+"Language: ET\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: UTF-8\n"
+
+#. Type: title
+#. Description
+#: ../lxc-stuff.templates:1001
+msgid "Linux Containers: LXC setup"
+msgstr "Linuxi konteinerid: LXC paigaldamine"
+
+#. Type: string
+#. Description
+#: ../lxc-stuff.templates:2001
+msgid "LXC directory:"
+msgstr "LXC kataloog:"
+
+#. Type: string
+#. Description
+#: ../lxc-stuff.templates:2001
+msgid ""
+"Please specify the directory that will be used to store the Linux Containers."
+msgstr "Palun mĆ¤Ć¤ra katlaoog mida kasutatakse konteinerite hoiustamiseks."
+
+#. Type: string
+#. Description
+#: ../lxc-stuff.templates:2001
+msgid "If unsure, use /srv/lxc/containers (default)."
+msgstr ""
+"Kui sa ei soovi kataloogi muuta, kasutan vaikevĆ¤Ć¤rtust /srv/lxc/containers"

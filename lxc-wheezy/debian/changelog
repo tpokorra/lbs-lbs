@@ -1,6 +1,45 @@
-lxc (1.0.3~opt-1) unstable; urgency=low
-  * removing dependancy on libseccomp which does not exist on Debian Squeeze
- -- Timotheus Pokorra <timotheus.pokorra@solidcharity.com>  Thu, 05 Jun 2014 08:42:08 +0100
+lxc (1.0.4-3) unstable; urgency=low
+
+  * Updating fixes for upstreams systemd file (Closes: #751553).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Sat, 14 Jun 2014 12:38:56 +0200
+
+lxc (1.0.4-2) unstable; urgency=low
+
+  [ Scott Kitterman ]
+  * Using dh-python3 and python3:Depends to generate correct python
+    depends (Closes: #748495).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Fri, 13 Jun 2014 21:19:10 +0200
+
+lxc (1.0.4-1) unstable; urgency=low
+
+  * Adding note regarding warnings about memory.use_hierarchy in README
+    (Closes: #750029).
+  * Merging upstream version 1.0.4.
+  * Refreshing lxcinitdir.patch.
+  * Refreshing lxc-sysvinit.patch.
+  * Refreshing lsb-init-headers.patch.
+  * Refreshing lsb-init-functions.patch.
+  * Refreshing lsb-init-lock.patch.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Fri, 13 Jun 2014 20:23:24 +0200
+
+lxc (1.0.3-3) unstable; urgency=low
+
+  * Checking for kernel architecture on i386 to support creating amd64
+    systems on i386-systems-with-amd64-kernels as well (Closes: #750387).
+  * Adding initial Estonian debconf translations from Georg Kahest
+    <georg@life.ee> (Closes: #750547).
+  * Disabling dbus, signal, and ptrace in the apparmor profiles until
+    Debian has a recent enough apparmor version (#746764), thanks to
+    Intrigeri <intrigeri@debian.org> (Closes: #750107).
+  * Simplifying default bind mounts in lxc-debconfig for shared storage
+    data.
+  * Updating lxcpath variable in lxc-stuff handling of /etc/lxc/lxc.conf
+    (Closes: #750385).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Wed, 11 Jun 2014 16:27:27 +0200
 
 lxc (1.0.3-2) unstable; urgency=low
 

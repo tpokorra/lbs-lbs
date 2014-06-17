@@ -952,17 +952,17 @@ EOF
 		# Adding shared data directory if existing
 		if [ -d "/srv/lxc/data/${_NAME}" ]
 		then
-			echo "lxc.mount.entry = /srv/lxc/data/${_NAME} ${_PATH}/rootfs/srv/${_NAME} none defaults,bind 0 0" >> "${_PATH}/config"
+			echo "lxc.mount.entry = /srv/lxc/data/${_NAME} srv/${_NAME} none defaults,bind 0 0" >> "${_PATH}/config"
 			mkdir -p "${_PATH}/rootfs/srv/${_NAME}"
 		elif [ -d "/srv/${_NAME}" ]
 		then
-			echo "lxc.mount.entry = /srv/${_NAME} ${_PATH}/rootfs/srv/${_NAME} none defaults,bind 0 0" >> "${_PATH}/config"
+			echo "lxc.mount.entry = /srv/${_NAME} srv/${_NAME} none defaults,bind 0 0" >> "${_PATH}/config"
 			mkdir -p "${_PATH}/rootfs/srv/${_NAME}"
 		elif [ -d "/srv/lxc/data" ]
 		then
-			echo "#lxc.mount.entry = /srv/lxc/data/${_NAME} ${_PATH}/rootfs/srv/${_NAME} none defaults,bind 0 0" >> "${_PATH}/config"
+			echo "#lxc.mount.entry = /srv/lxc/data/${_NAME} srv/${_NAME} none defaults,bind 0 0" >> "${_PATH}/config"
 		else
-			echo "#lxc.mount.entry = /srv/${_NAME} ${_PATH}/rootfs/srv/${_NAME} none defaults,bind 0 0" >> "${_PATH}/config"
+			echo "#lxc.mount.entry = /srv/${_NAME} srv/${_NAME} none defaults,bind 0 0" >> "${_PATH}/config"
 		fi
 	fi
 
