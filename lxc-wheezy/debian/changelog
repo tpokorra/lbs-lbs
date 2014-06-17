@@ -1,3 +1,7 @@
+lxc (1.0.4~opt-1) unstable; urgency=low
+  * removing dependancy on libseccomp which does not exist on Debian Squeeze
+ -- Timotheus Pokorra <timotheus.pokorra@solidcharity.com>  Tue, 17 Jun 2014 08:42:08 +0100
+
 lxc (1.0.4-3) unstable; urgency=low
 
   * Updating fixes for upstreams systemd file (Closes: #751553).
