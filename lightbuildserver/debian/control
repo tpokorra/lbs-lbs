@@ -1,0 +1,11 @@
+Source: lightbuildserver
+Section: unknown
+Priority: extra
+Maintainer: Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+Standards-Version: 3.9.2
+Homepage: http://www.solidcharity.com
+
+Package: lightbuildserver
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3, git
+Description: LightBuildServer for building packages for various Linux distributions using LXC

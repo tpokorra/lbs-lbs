@@ -1,0 +1,3 @@
+lbs:
+  source:
+    download: ["https://github.com/SolidCharity/LightBuildServer/archive/master.tar.gz"]
