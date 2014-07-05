@@ -7,5 +7,5 @@ Homepage: http://www.solidcharity.com
 
 Package: lightbuildserver
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, python3, git
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3, python3-bottle, python3-pyyaml, python3-email, git
 Description: LightBuildServer for building packages for various Linux distributions using LXC
