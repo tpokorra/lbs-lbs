@@ -31,10 +31,10 @@ install: build
 	dh_installdirs
 
 	# Add here commands to install the package into debian/gentoo.
-	mkdir -p $(CURDIR)/debian/lbs/usr/local/lightbuildserver
-	mkdir -p $(CURDIR)/debian/lbs/etc/init.d
-	( cd $(CURDIR)/debian/lbs/etc/init.d; ln -s ../../usr/local/lightbuildserver/web/lbs-service-ubuntu.sh lbs; cd - )
-	cp -R /tmp/buildroot/* $(CURDIR)/debian/lbs/usr/local/lightbuildserver
+	mkdir -p $(CURDIR)/debian/lightbuildserver/usr/local/lightbuildserver
+	mkdir -p $(CURDIR)/debian/lightbuildserver/etc/init.d
+	( cd $(CURDIR)/debian/lightbuildserver/etc/init.d; ln -s ../../usr/local/lightbuildserver/web/lightbuildserver-service-ubuntu.sh lightbuildserver; cd - )
+	cp -R /tmp/buildroot/* $(CURDIR)/debian/lightbuildserver/usr/local/lightbuildserver
 
 
 # Build architecture-independent files here.
