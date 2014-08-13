@@ -1,0 +1,3 @@
+lbs:
+  source:
+    download: ["https://github.com/tpokorra/lxc-scripts/archive/master.tar.gz"]
