@@ -34,7 +34,9 @@ install: build
 	mkdir -p $(CURDIR)/debian/lightbuildserver/usr/local/lightbuildserver
 	mkdir -p $(CURDIR)/debian/lightbuildserver/etc/init.d
 	( cd $(CURDIR)/debian/lightbuildserver/etc/init.d; ln -s ../../usr/local/lightbuildserver/web/lbs-service-ubuntu.sh lightbuildserver; cd - )
-	cp -R /tmp/buildroot/* $(CURDIR)/debian/lightbuildserver/usr/local/lightbuildserver
+	cp -R /tmp/buildroot/lib $(CURDIR)/debian/lightbuildserver/usr/local/lightbuildserver
+	cp -R /tmp/buildroot/web $(CURDIR)/debian/lightbuildserver/usr/local/lightbuildserver
+	cp -R /tmp/buildroot/config-sample.yml $(CURDIR)/debian/lightbuildserver/usr/local/lightbuildserver/config.yml
 
 
 # Build architecture-independent files here.
