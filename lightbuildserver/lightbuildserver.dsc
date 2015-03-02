@@ -1,6 +1,6 @@
 Format: 1.0
 Source: lightbuildserver
-Version: 0.1.0
+Version: 0.1.0-%{release}
 Binary: lightbuildserver
 Maintainer: Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 Architecture: any
