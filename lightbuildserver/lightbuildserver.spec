@@ -13,6 +13,7 @@ Source2:        %{name}-uwsgi.ini
 
 BuildArch:      noarch
 
+BuildRequires:  python3
 Requires:       python3
 Requires:       python3-bottle
 Requires:       python3-PyYAML
