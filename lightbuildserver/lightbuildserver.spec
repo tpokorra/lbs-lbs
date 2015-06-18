@@ -19,10 +19,17 @@ Requires:       python3-bottle
 Requires:       python3-PyYAML
 Requires:       uwsgi-plugin-python3
 Requires:       nginx
-Requires:       docker-io
 
 %description
 LightBuildServer for building rpm and deb packages and running other jobs too, using Docker containers.
+
+%package docker
+Summary:        Scripts for creating docker containers for the LightBuildServer
+Requires:       docker-io
+
+%description docker
+This package provides some scripts useful for creating docker containers.
+They are needed by LightBuildServer to build on various Linux Distributions.
 
 %prep
 %setup -q -n %{name}-%{version}
@@ -39,6 +46,7 @@ for d in $(find . -mindepth 1 -maxdepth 1 -type d ); do
 done
 cp config-sample.yml %{buildroot}%{_datadir}/%{name}/config.yml
 rm %{buildroot}%{_datadir}/%{name}/web/*.sh
+mv %{buildroot}%{_datadir}/%{name}/docker-scripts %{buildroot}%{_datadir}
 
 # initial config
 install -Dpm 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/nginx/conf.d/%{name}.conf
@@ -65,10 +73,12 @@ install -Dpm 644  %{SOURCE1} %{buildroot}%{_sysconfdir}/uwsgi.d/%{name}.ini
 %{_datadir}/%{name}/web/views/*.tpl
 %{_sysconfdir}/nginx/conf.d/%{name}.conf
 %{_sysconfdir}/uwsgi.d/%{name}.ini
-%dir %{_datadir}/%{name}/docker-scripts/Dockerfiles
-%{_datadir}/%{name}/docker-scripts/Dockerfiles/Dockerfile.*
-%{_datadir}/%{name}/docker-scripts/Readme.md
-%{_datadir}/%{name}/docker-scripts/*.sh
+
+%files docker
+%dir %{_datadir}/docker-scripts/Dockerfiles
+%{_datadir}/docker-scripts/Dockerfiles/Dockerfile.*
+%{_datadir}/docker-scripts/Readme.md
+%{_datadir}/docker-scripts/*.sh
 
 %changelog
 * Thu Jun 18 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.1.0-1
