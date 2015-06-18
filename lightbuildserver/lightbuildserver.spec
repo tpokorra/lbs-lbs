@@ -55,6 +55,7 @@ done
 cp config-sample.yml %{buildroot}%{_datadir}/%{name}/config.yml
 rm %{buildroot}%{_datadir}/%{name}/web/*.sh
 mv %{buildroot}%{_datadir}/%{name}/docker-scripts %{buildroot}%{_datadir}
+mv %{buildroot}%{_datadir}/%{name}/lxc-scripts %{buildroot}%{_datadir}
 
 # initial config
 install -Dpm 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/nginx/conf.d/%{name}.conf
