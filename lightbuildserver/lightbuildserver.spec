@@ -10,6 +10,7 @@ URL:            http://www.lightbuildserver.org
 Source0:        https://github.com/SolidCharity/LightBuildServer/releases/download/%{name}-%{version}/%{name}-%{version}.tar.bz2
 Source1:        %{name}-nginx.conf
 Source2:        %{name}-uwsgi.ini
+Source3:        %{name}-init.sh
 
 BuildArch:      noarch
 
@@ -59,7 +60,8 @@ mv %{buildroot}%{_datadir}/%{name}/lxc-scripts %{buildroot}%{_datadir}
 
 # initial config
 install -Dpm 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/nginx/conf.d/%{name}.conf
-install -Dpm 644  %{SOURCE1} %{buildroot}%{_sysconfdir}/uwsgi.d/%{name}.ini
+install -Dpm 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/uwsgi.d/%{name}.ini
+install -Dpm 755 %{SOURCE3} %{buildroot}%{_datadir}/%{name}-init.sh
 
 %files
 %dir %{_datadir}/%{name}
