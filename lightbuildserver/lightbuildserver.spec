@@ -35,7 +35,7 @@ They are needed by LightBuildServer to build on various Linux Distributions.
 Summary:        Scripts for creating LXC containers for the LightBuildServer
 Requires:       lxc lxc-extra lxc-templates gpg libvirt
 
-%description docker
+%description lxc
 This package provides some scripts useful for creating LXC containers.
 They are needed by LightBuildServer to build on various Linux Distributions.
 
