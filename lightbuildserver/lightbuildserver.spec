@@ -1,3 +1,5 @@
+%global __python %{__python3}
+
 Name:           lightbuildserver
 Version:        0.1.0
 Release:        1%{?dist}
@@ -22,7 +24,7 @@ Requires:       docker-io
 LightBuildServer for building rpm and deb packages and running other jobs too, using Docker containers.
 
 %prep
-%setup -q -n %{name}
+%setup -q -n %{name}-%{version}
 
 %build
 # Nothing to build
@@ -34,16 +36,38 @@ install -dm 755 %{buildroot}%{_datadir}/%{name}
 for d in $(find . -mindepth 1 -maxdepth 1 -type d ); do
     cp -a "$d" %{buildroot}%{_datadir}/%{name}
 done
-mv %{buildroot}%{_datadir}/%{name}/config-sample.yml %{buildroot}%{_datadir}/%{name}/config.yml
+cp config-sample.yml %{buildroot}%{_datadir}/%{name}/config.yml
+rm %{buildroot}%{_datadir}/%{name}/web/*.sh
 
 # initial config
 install -Dpm 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/nginx/conf.d/%{name}.conf
 install -Dpm 644  %{SOURCE1} %{buildroot}%{_sysconfdir}/uwsgi.d/%{name}.ini
 
 %files
-%{buildroot}%{_datadir}/%{name}
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/config.yml
+%dir %{_datadir}/%{name}/lib
+%{_datadir}/%{name}/lib/*.py
+%dir %{_datadir}/%{name}/lib/__pycache__
+%{_datadir}/%{name}/lib/__pycache__/*.pyo
+%{_datadir}/%{name}/lib/__pycache__/*.pyc
+%dir %{_datadir}/%{name}/web
+%{_datadir}/%{name}/web/*.py
+%dir %{_datadir}/%{name}/web/__pycache__
+%{_datadir}/%{name}/web/__pycache__/*.pyo
+%{_datadir}/%{name}/web/__pycache__/*.pyc
+%dir %{_datadir}/%{name}/web/ext/bootbox
+%{_datadir}/%{name}/web/ext/bootbox/*
+%dir %{_datadir}/%{name}/web/css
+%{_datadir}/%{name}/web/css/*.css
+%dir %{_datadir}/%{name}/web/views
+%{_datadir}/%{name}/web/views/*.tpl
 %{_sysconfdir}/nginx/conf.d/%{name}.conf
 %{_sysconfdir}/uwsgi.d/%{name}.ini
+%dir %{_datadir}/%{name}/docker-scripts/Dockerfiles
+%{_datadir}/%{name}/docker-scripts/Dockerfiles/Dockerfile.*
+%{_datadir}/%{name}/docker-scripts/Readme.md
+%{_datadir}/%{name}/docker-scripts/*.sh
 
 %changelog
 * Thu Jun 18 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.1.0-1
