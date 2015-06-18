@@ -31,6 +31,14 @@ Requires:       docker-io
 This package provides some scripts useful for creating docker containers.
 They are needed by LightBuildServer to build on various Linux Distributions.
 
+%package lxc
+Summary:        Scripts for creating LXC containers for the LightBuildServer
+Requires:       lxc lxc-extra lxc-templates gpg libvirt
+
+%description docker
+This package provides some scripts useful for creating LXC containers.
+They are needed by LightBuildServer to build on various Linux Distributions.
+
 %prep
 %setup -q -n %{name}-%{version}
 
@@ -79,6 +87,13 @@ install -Dpm 644  %{SOURCE1} %{buildroot}%{_sysconfdir}/uwsgi.d/%{name}.ini
 %{_datadir}/docker-scripts/Dockerfiles/Dockerfile.*
 %{_datadir}/docker-scripts/Readme.md
 %{_datadir}/docker-scripts/*.sh
+
+%files lxc
+%dir %{_datadir}/lxc-scripts
+%{_datadir}/lxc-scripts/*.sh
+%{_datadir}/lxc-scripts/*.tpl
+%{_datadir}/lxc-scripts/*.patch
+%{_datadir}/lxc-scripts/Readme.md
 
 %changelog
 * Thu Jun 18 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.1.0-1
