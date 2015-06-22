@@ -28,9 +28,6 @@ install -dm 755 %{buildroot}%{_datadir}/%{name}
 
 cp -a * %{buildroot}%{_datadir}/%{name}
 
-# install content
-mv %{buildroot}%{_datadir}/%{name} %{buildroot}%{_datadir}
-
 %files
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/*.sh
