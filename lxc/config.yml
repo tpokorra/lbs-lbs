@@ -1,4 +1,0 @@
-lbs:
-  source:
-    #download: ["http://ftp.de.debian.org/debian/pool/main/l/lxc/lxc_1.0.3.orig.tar.xz"]
-    download: ["https://linuxcontainers.org/downloads/lxc-1.0.3.tar.gz"]

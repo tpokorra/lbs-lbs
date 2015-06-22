@@ -1,8 +1,0 @@
-wget https://pypi.python.org/packages/source/b/bottle/bottle-0.12.4.tar.gz
-tar xzf bottle-0.12.4.tar.gz
-mv bottle-0.12.4/* .
-dpkg-buildpackage -rfakeroot -uc -b
-mkdir -p ~/repo/binary
-cp ../*.deb ~/repo/binary
-cd ~/repo
-dpkg-scanpackages binary  /dev/null | gzip -9c > binary/Packages.gz
