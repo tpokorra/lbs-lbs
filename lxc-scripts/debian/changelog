@@ -1,4 +1,4 @@
-lxcscripts (0.1.0-%{release}) unstable; urgency=low
+lxc-scripts (0.1.0-%{release}) unstable; urgency=low
   * initial version
  -- Timotheus Pokorra <timotheus.pokorra@solidcharity.com>  Wed, 13 Aug 2014 22:13:18 +0200
 

@@ -1,11 +1,11 @@
-Source: lxcscripts
+Source: lxc-scripts
 Section: unknown
 Priority: extra
 Maintainer: Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 Standards-Version: 3.9.2
 Homepage: http://www.solidcharity.com
 
-Package: lxcscripts
+Package: lxc-scripts
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, lxc, cgroup-lite, python3-lxc
 Description: Scripts for creating LXC containers that are used by LightBuildServer to build packages for various Linux distributions

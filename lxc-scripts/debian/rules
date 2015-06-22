@@ -11,7 +11,7 @@ build-stamp:
 	dh_testdir
 
 	# Add here commands to compile the package.
-	( rm -Rf /tmp/buildroot; mkdir /tmp/buildroot; cp -R * /tmp/buildroot/; rm -Rf /tmp/buildroot/debian; rm -f /tmp/buildroot/config.yml; rm -f /tmp/buildroot/lxcscripts.dsc )
+	( rm -Rf /tmp/buildroot; mkdir /tmp/buildroot; cp -R * /tmp/buildroot/; rm -Rf /tmp/buildroot/debian; rm -f /tmp/buildroot/config.yml; rm -f /tmp/buildroot/lxc-scripts.dsc )
 
 	touch build-stamp
 
@@ -31,8 +31,8 @@ install: build
 	dh_installdirs
 
 	# Add here commands to install the package into debian/gentoo.
-	mkdir -p $(CURDIR)/debian/lxcscripts/usr/share/lxcscripts
-	cp -R /tmp/buildroot/* $(CURDIR)/debian/lxcscripts/usr/share/lxcscripts
+	mkdir -p $(CURDIR)/debian/lxc-scripts/usr/share/lxc-scripts
+	cp -R /tmp/buildroot/* $(CURDIR)/debian/lxc-scripts/usr/share/lxc-scripts
 
 
 # Build architecture-independent files here.
