@@ -14,7 +14,6 @@ Requires:       docker-io
 
 %description
 This package provides some scripts useful for creating Docker containers.
-They manage the network, and the tunneling and websites routed through nginx.
 
 %prep
 %setup -q -n %{name}-master
@@ -30,8 +29,7 @@ cp -a * %{buildroot}%{_datadir}/%{name}
 %files
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/*.sh
-%{_datadir}/%{name}/*.tpl
-%{_datadir}/%{name}/*.patch
+%{_datadir}/%{name}/Dockerfiles/Dockerfile.*
 %{_datadir}/%{name}/Readme.md
 
 %changelog
