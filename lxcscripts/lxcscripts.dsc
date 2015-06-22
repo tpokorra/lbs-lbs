@@ -1,9 +1,9 @@
 Format: 1.0
-Source: lbslxcscripts
+Source: lxcscripts
 Version: 0.1.0-%{release}
-Binary: lbslxcscripts
+Binary: lxcscripts
 Maintainer: Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 Architecture: any
 Build-Depends: debhelper (>= 4.1.16)
 Files: 
- abc 1 lbslxcscripts.tar.gz
+ abc 1 lxcscripts.tar.gz
