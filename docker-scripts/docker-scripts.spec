@@ -8,7 +8,6 @@ Summary:        Scripts for creating Docker containers
 License:        LGPLv2+
 URL:            http://www.lightbuildserver.org
 Source0:        https://github.com/tpokorra/%{name}/archive/master.tar.gz
-Source1:        %{name}-init.sh
 
 BuildArch:      noarch
 Requires:       docker-io
