@@ -25,7 +25,7 @@ Requires:       nginx
 LightBuildServer for building rpm and deb packages and running other jobs too, using Docker containers.
 
 %prep
-%setup -q -n %{name}-master
+%setup -q -n LightBuildServer-master
 
 %build
 # Nothing to build
