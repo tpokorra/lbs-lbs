@@ -2,12 +2,12 @@
 
 Name:           lightbuildserver
 Version:        0.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Build packages for various Linux distributions and run nightly jobs
 
 License:        LGPLv2+
 URL:            http://www.lightbuildserver.org
-Source0:        https://github.com/SolidCharity/LightBuildServer/releases/download/%{name}-%{version}/%{name}-%{version}.tar.bz2
+Source0:        https://github.com/SolidCharity/LightBuildServer/archive/master.tar.gz
 Source1:        %{name}-nginx.conf
 Source2:        %{name}-uwsgi.ini
 Source3:        %{name}-init.sh
@@ -24,24 +24,8 @@ Requires:       nginx
 %description
 LightBuildServer for building rpm and deb packages and running other jobs too, using Docker containers.
 
-%package docker
-Summary:        Scripts for creating docker containers for the LightBuildServer
-Requires:       docker-io
-
-%description docker
-This package provides some scripts useful for creating docker containers.
-They are needed by LightBuildServer to build on various Linux Distributions.
-
-%package lxc
-Summary:        Scripts for creating LXC containers for the LightBuildServer
-Requires:       lxc lxc-extra lxc-templates gpg libvirt
-
-%description lxc
-This package provides some scripts useful for creating LXC containers.
-They are needed by LightBuildServer to build on various Linux Distributions.
-
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n %{name}-master
 
 %build
 # Nothing to build
@@ -55,17 +39,18 @@ for d in $(find . -mindepth 1 -maxdepth 1 -type d ); do
 done
 cp config-sample.yml %{buildroot}%{_datadir}/%{name}/config.yml
 rm %{buildroot}%{_datadir}/%{name}/web/*.sh
-mv %{buildroot}%{_datadir}/%{name}/docker-scripts %{buildroot}%{_datadir}
-mv %{buildroot}%{_datadir}/%{name}/lxc-scripts %{buildroot}%{_datadir}
+rm -Rf %{buildroot}%{_datadir}/%{name}/docker-scripts
+rm -Rf %{buildroot}%{_datadir}/%{name}/lxc-scripts
 
 # initial config
 install -Dpm 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/nginx/conf.d/%{name}.conf
 install -Dpm 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/uwsgi.d/%{name}.ini
-install -Dpm 755 %{SOURCE3} %{buildroot}%{_datadir}/%{name}-init.sh
+install -Dpm 755 %{SOURCE3} %{buildroot}%{_datadir}/%{name}/%{name}-init.sh
 
 %files
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/config.yml
+%{_datadir}/%{name}/%{name}-init.sh
 %dir %{_datadir}/%{name}/lib
 %{_datadir}/%{name}/lib/*.py
 %dir %{_datadir}/%{name}/lib/__pycache__
@@ -85,19 +70,9 @@ install -Dpm 755 %{SOURCE3} %{buildroot}%{_datadir}/%{name}-init.sh
 %{_sysconfdir}/nginx/conf.d/%{name}.conf
 %{_sysconfdir}/uwsgi.d/%{name}.ini
 
-%files docker
-%dir %{_datadir}/docker-scripts/Dockerfiles
-%{_datadir}/docker-scripts/Dockerfiles/Dockerfile.*
-%{_datadir}/docker-scripts/Readme.md
-%{_datadir}/docker-scripts/*.sh
-
-%files lxc
-%dir %{_datadir}/lxc-scripts
-%{_datadir}/lxc-scripts/*.sh
-%{_datadir}/lxc-scripts/*.tpl
-%{_datadir}/lxc-scripts/*.patch
-%{_datadir}/lxc-scripts/Readme.md
-
 %changelog
+* Wed Jul 08 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.1.0-2
+- build the lxc and docker scripts packages in separate spec files
+
 * Thu Jun 18 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.1.0-1
 - Initial package for LightBuildServer
