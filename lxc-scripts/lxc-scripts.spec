@@ -10,7 +10,7 @@ URL:            http://www.lightbuildserver.org
 Source0:        https://github.com/tpokorra/%{name}/archive/master.tar.gz
 
 BuildArch:      noarch
-Requires:       lxc lxc-extra lxc-templates gpg libvirt tar
+Requires:       lxc lxc-extra lxc-templates gpg libvirt tar rsync
 
 %description
 This package provides some scripts useful for creating LXC containers.
