@@ -24,7 +24,7 @@ set -e
 
 case "$1" in
     configure)
-       echo please run: cd /usr/share/lxc-scripts && ./initLXC.sh && ./initIPTables.sh
+       echo "please run: cd /usr/share/lxc-scripts && ./initLXC.sh && ./initIPTables.sh"
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
