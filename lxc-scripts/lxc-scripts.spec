@@ -2,7 +2,7 @@
 
 Name:           lxc-scripts
 Version:        0.1.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Scripts for creating LXC containers
 
 License:        LGPLv2+
@@ -10,7 +10,7 @@ URL:            http://www.lightbuildserver.org
 Source0:        https://github.com/tpokorra/%{name}/archive/master.tar.gz
 
 BuildArch:      noarch
-Requires:       lxc lxc-templates gpg libvirt tar rsync net-tools
+Requires:       lxc lxc-templates gpg libvirt tar rsync net-tools debootstrap
 %if 0%{?rhel}%{?el6}%{?el7}
 # only require lxc-extra on Fedora
 %else
@@ -40,7 +40,7 @@ cp -a * %{buildroot}%{_datadir}/%{name}
 %{_datadir}/%{name}/Readme.md
 
 %changelog
-* Fri Jul 10 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.1.0-3
+* Fri Jul 10 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.1.0-4
 - Some fixes for Fedora 22 and CentOS7 host
 * Mon Jun 22 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.1.0-1
 - Initial package
