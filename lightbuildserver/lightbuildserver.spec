@@ -50,7 +50,6 @@ install -Dpm 755 %{SOURCE3} %{buildroot}%{_datadir}/%{name}/init.sh
 
 %files
 %dir %{_datadir}/%{name}
-%{_datadir}/%{name}/config.yml
 %{_datadir}/%{name}/init.sh
 %dir %{_datadir}/%{name}/lib
 %{_datadir}/%{name}/lib/*.py
