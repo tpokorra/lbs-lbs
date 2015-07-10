@@ -2,7 +2,7 @@
 
 Name:           lxc-scripts
 Version:        0.1.0
-Release:        %{release}%{?dist}
+Release:        2%{?dist}
 Summary:        Scripts for creating LXC containers
 
 License:        LGPLv2+
@@ -35,5 +35,7 @@ cp -a * %{buildroot}%{_datadir}/%{name}
 %{_datadir}/%{name}/Readme.md
 
 %changelog
+* Fri Jul 10 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.1.0-2
+- Some fixes for Fedora 22 host
 * Mon Jun 22 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.1.0-1
 - Initial package
