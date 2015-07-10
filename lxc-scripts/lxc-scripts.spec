@@ -10,7 +10,12 @@ URL:            http://www.lightbuildserver.org
 Source0:        https://github.com/tpokorra/%{name}/archive/master.tar.gz
 
 BuildArch:      noarch
-Requires:       lxc lxc-extra lxc-templates gpg libvirt tar rsync
+Requires:       lxc lxc-templates gpg libvirt tar rsync
+%if 0%{?rhel}%{?el6}%{?el7}
+# only require lxc-extra on Fedora
+%else
+Requires:       lxc-extra
+%endif
 
 %description
 This package provides some scripts useful for creating LXC containers.
