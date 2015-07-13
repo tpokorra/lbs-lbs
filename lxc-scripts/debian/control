@@ -7,5 +7,5 @@ Homepage: http://www.solidcharity.com
 
 Package: lxc-scripts
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, lxc, cgroup-lite, python3-lxc
+Depends: ${shlibs:Depends}, ${misc:Depends}, lxc, cgroup-lite, python3-lxc, bsdmainutils
 Description: Scripts for creating LXC containers that are used by LightBuildServer to build packages for various Linux distributions
