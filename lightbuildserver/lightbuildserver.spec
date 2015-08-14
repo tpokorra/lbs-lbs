@@ -34,6 +34,12 @@ LightBuildServer for building rpm and deb packages and running other jobs too, u
 
 %install
 install -dm 755 %{buildroot}%{_datadir}/%{name}
+install -dm 755 %{buildroot}%{_sharedstatedir}/%{name}
+install -dm 700 %{buildroot}%{_sharedstatedir}/%{name}/db
+install -dm 700 %{buildroot}%{_sharedstatedir}/%{name}/src
+install -dm 700 %{buildroot}%{_sharedstatedir}/%{name}/logs
+install -dm 755 %{buildroot}%{_sharedstatedir}/%{name}/repos
+install -dm 755 %{buildroot}%{_sharedstatedir}/%{name}/tarballs
 
 # install content
 for d in $(find . -mindepth 1 -maxdepth 1 -type d ); do
