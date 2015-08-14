@@ -1,8 +1,8 @@
 %global __python %{__python3}
 
 Name:           lightbuildserver
-Version:        0.1.0
-Release:        2%{?dist}
+Version:        0.2.0
+Release:        0%{?dist}
 Summary:        Build packages for various Linux distributions and run nightly jobs
 
 License:        LGPLv2+
@@ -24,7 +24,7 @@ Requires:       sqlite
 Requires:       tar
 
 %description
-LightBuildServer for building rpm and deb packages and running other jobs too, using Docker containers.
+LightBuildServer for building rpm and deb packages and running other jobs too, using Docker and LXC containers.
 
 %prep
 %setup -q -n LightBuildServer-master
@@ -72,8 +72,17 @@ install -Dpm 755 %{SOURCE3} %{buildroot}%{_datadir}/%{name}/init.sh
 %{_sysconfdir}/uwsgi.d/%{name}.ini
 %dir %{_sysconfdir}/%{name}
 %{_sysconfdir}/%{name}/config.yml
+%dir %{_sharedstatedir}/%{name}
+%dir %{_sharedstatedir}/%{name}/db
+%dir %{_sharedstatedir}/%{name}/src
+%dir %{_sharedstatedir}/%{name}/logs
+%dir %{_sharedstatedir}/%{name}/repos
+%dir %{_sharedstatedir}/%{name}/tarballs
 
 %changelog
+* Fri Aug 14 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.2.0-0
+- new release 0.2.0, with sqlite for saving the state
+
 * Wed Jul 08 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.1.0-2
 - build the lxc and docker scripts packages in separate spec files
 
