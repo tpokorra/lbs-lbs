@@ -2,7 +2,7 @@
 
 Name:           lightbuildserver
 Version:        0.2.0
-Release:        0%{?dist}
+Release:        %{release}%{?dist}
 Summary:        Build packages for various Linux distributions and run nightly jobs
 
 License:        LGPLv2+
