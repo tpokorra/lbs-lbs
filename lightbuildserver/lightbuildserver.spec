@@ -22,6 +22,7 @@ Requires:       uwsgi-plugin-python3
 Requires:       nginx
 Requires:       sqlite
 Requires:       tar
+Requires:       rsync
 
 %description
 LightBuildServer for building rpm and deb packages and running other jobs too, using Docker and LXC containers.

@@ -6,6 +6,8 @@ chown uwsgi:uwsgi /etc/uwsgi.d/lightbuildserver.ini
 usermod -a nginx -G uwsgi
 touch /var/log/uwsgi.log
 chown uwsgi:uwsgi /var/log/uwsgi.log
+touch /var/log/lbs.log
+chown uwsgi:uwsgi /var/log/lbs.log
 
 # disable the default page by moving it to port 81
 sed -i "s/80 default_server/81 default_server/g" /etc/nginx/nginx.conf
