@@ -15,7 +15,7 @@ sed -i "s/80 default_server/81 default_server/g" /etc/nginx/nginx.conf
 etccontainerpath=/etc/lightbuildserver/container
 echo "this key will be used to login to the host for the containers."
 echo "leave the passwort empty!"
-mkdir -p $etcpath
+mkdir -p $etccontainerpath
 ssh-keygen -t rsa -f $etccontainerpath/container_rsa
 chown -R uwsgi:uwsgi $etccontainerpath
 
