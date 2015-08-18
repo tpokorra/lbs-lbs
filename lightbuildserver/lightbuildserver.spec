@@ -84,7 +84,7 @@ install -Dpm 755 %{SOURCE4} %{buildroot}%{_datadir}/%{name}/cron.sh
 %{_sysconfdir}/nginx/conf.d/%{name}.conf
 %{_sysconfdir}/uwsgi.d/%{name}.ini
 %dir %{_sysconfdir}/%{name}
-%{_sysconfdir}/%{name}/config.yml
+%config %{_sysconfdir}/%{name}/config.yml
 %dir %{_sharedstatedir}/%{name}
 %dir %{_sharedstatedir}/%{name}/db
 %dir %{_sharedstatedir}/%{name}/src
