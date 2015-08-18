@@ -61,6 +61,7 @@ install -Dpm 755 %{SOURCE3} %{buildroot}%{_datadir}/%{name}/init.sh
 install -Dpm 755 %{SOURCE4} %{buildroot}%{_datadir}/%{name}/cron.sh
 
 %files
+%defattr(-,uwsgi,uwsgi,-)
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/init.sh
 %{_datadir}/%{name}/cron.sh
