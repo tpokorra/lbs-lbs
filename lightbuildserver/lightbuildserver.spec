@@ -11,6 +11,7 @@ Source0:        https://github.com/SolidCharity/LightBuildServer/archive/master.
 Source1:        %{name}-nginx.conf
 Source2:        %{name}-uwsgi.ini
 Source3:        %{name}-init.sh
+Source4:        %{name}-cron.sh
 
 BuildArch:      noarch
 
@@ -57,6 +58,7 @@ install -Dpm 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/nginx/conf.d/%{name}.conf
 install -Dpm 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/uwsgi.d/%{name}.ini
 install -Dpm 644 config-sample.yml %{buildroot}%{_sysconfdir}/%{name}/config.yml
 install -Dpm 755 %{SOURCE3} %{buildroot}%{_datadir}/%{name}/init.sh
+install -Dpm 755 %{SOURCE4} %{buildroot}%{_datadir}/%{name}/cron.sh
 
 %files
 %dir %{_datadir}/%{name}
