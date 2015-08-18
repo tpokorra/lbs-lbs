@@ -1,7 +1,7 @@
 %global __python %{__python3}
 
 Name:           lightbuildserver
-Version:        0.2.0
+Version:        0.2.1
 Release:        %{release}%{?dist}
 Summary:        Build packages for various Linux distributions and run nightly jobs
 
@@ -23,6 +23,8 @@ Requires:       nginx
 Requires:       sqlite
 Requires:       tar
 Requires:       rsync
+Requires:       wget
+Requires:       crontabs
 
 %description
 LightBuildServer for building rpm and deb packages and running other jobs too, using Docker and LXC containers.
@@ -87,6 +89,9 @@ install -Dpm 755 %{SOURCE3} %{buildroot}%{_datadir}/%{name}/init.sh
 %dir %{_sharedstatedir}/%{name}/tarballs
 
 %changelog
+* Tue Aug 18 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.2.1-0
+- new release 0.2.1, with cronjob for processing the build queue
+
 * Fri Aug 14 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.2.0-0
 - new release 0.2.0, with sqlite for saving the state
 

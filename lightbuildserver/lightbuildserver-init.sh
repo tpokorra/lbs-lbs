@@ -19,6 +19,17 @@ mkdir -p $etccontainerpath
 ssh-keygen -t rsa -f $etccontainerpath/container_rsa
 chown -R uwsgi:uwsgi $etccontainerpath
 
+# enable and start nginx and uwsgi
+systemctl enable nginx
+systemctl start nginx
+systemctl enable uwsgi
+systemctl start uwsgi
+
+# enable the cronjob for processing the build queue
+crontab -u uwsgi -l | { cat; echo "# every minute, execute this loop to process the build queue"; echo "* * * * * for i in \`seq 1 11\`; do wget -q http://localhost/processbuildqueue -O /tmp/lbsqueue > /dev/null; rm -f /tmp/lbsqueue; sleep 5; done"; } | crontab -u uwsgi -
+systemctl enable crond
+systemctl start crond
+
 # for using the local machine as a host for the containers
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
