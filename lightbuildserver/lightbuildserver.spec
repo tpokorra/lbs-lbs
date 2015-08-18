@@ -63,6 +63,7 @@ install -Dpm 755 %{SOURCE4} %{buildroot}%{_datadir}/%{name}/cron.sh
 %files
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/init.sh
+%{_datadir}/%{name}/cron.sh
 %dir %{_datadir}/%{name}/lib
 %{_datadir}/%{name}/lib/*.py
 %dir %{_datadir}/%{name}/lib/__pycache__
