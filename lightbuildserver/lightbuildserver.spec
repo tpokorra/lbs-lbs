@@ -1,7 +1,7 @@
 %global __python %{__python3}
 
 Name:           lightbuildserver
-Version:        0.2.2
+Version:        0.2.3
 Release:        %{release}%{?dist}
 Summary:        Build packages for various Linux distributions and run nightly jobs
 
@@ -93,6 +93,9 @@ install -Dpm 755 %{SOURCE4} %{buildroot}%{_datadir}/%{name}/cron.sh
 %dir %{_sharedstatedir}/%{name}/tarballs
 
 %changelog
+* Fri Aug 21 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.2.3-0
+- new release 0.2.3, with fix for cancelling hanging builds
+
 * Tue Aug 18 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.2.2-0
 - new release 0.2.2, with cronjob for processing the build queue
 
