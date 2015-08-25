@@ -11,6 +11,8 @@ Source0:        https://github.com/tpokorra/%{name}/archive/master.tar.gz
 
 BuildArch:      noarch
 Requires:       docker-io
+Requires:       rsync
+Requires:       tar
 
 %description
 This package provides some scripts useful for creating Docker containers.
