@@ -1,0 +1,9 @@
+/var/log/uwsgi.log {
+    missingok
+    notifempty
+    compress
+    size 20k
+    daily
+    create 0644 uwsgi uwsgi
+}
+

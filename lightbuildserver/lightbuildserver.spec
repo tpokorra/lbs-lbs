@@ -12,6 +12,7 @@ Source1:        %{name}-nginx.conf
 Source2:        %{name}-uwsgi.ini
 Source3:        %{name}-init.sh
 Source4:        %{name}-cron.sh
+Source5:        %{name}-logrotate
 
 BuildArch:      noarch
 
@@ -59,6 +60,7 @@ install -Dpm 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/uwsgi.d/%{name}.ini
 install -Dpm 644 config-sample.yml %{buildroot}%{_sysconfdir}/%{name}/config.yml
 install -Dpm 755 %{SOURCE3} %{buildroot}%{_datadir}/%{name}/init.sh
 install -Dpm 755 %{SOURCE4} %{buildroot}%{_datadir}/%{name}/cron.sh
+install -Dpm 644 %{SOURCE5} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 
 %files
 %defattr(-,uwsgi,uwsgi,-)
@@ -85,6 +87,7 @@ install -Dpm 755 %{SOURCE4} %{buildroot}%{_datadir}/%{name}/cron.sh
 %{_sysconfdir}/uwsgi.d/%{name}.ini
 %dir %{_sysconfdir}/%{name}
 %config %{_sysconfdir}/%{name}/config.yml
+%{_sysconfdir}/logrotate.d/%{name}
 %dir %{_sharedstatedir}/%{name}
 %dir %{_sharedstatedir}/%{name}/db
 %dir %{_sharedstatedir}/%{name}/src
@@ -93,6 +96,9 @@ install -Dpm 755 %{SOURCE4} %{buildroot}%{_datadir}/%{name}/cron.sh
 %dir %{_sharedstatedir}/%{name}/tarballs
 
 %changelog
+* Mon Sep 28 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.2.4-0
+- new release 0.2.4, with some fixes, and logrotate
+
 * Fri Aug 21 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.2.3-0
 - new release 0.2.3, with fix for cancelling hanging builds
 
