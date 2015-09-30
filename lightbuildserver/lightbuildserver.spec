@@ -87,13 +87,14 @@ install -Dpm 644 %{SOURCE5} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 %{_sysconfdir}/uwsgi.d/%{name}.ini
 %dir %{_sysconfdir}/%{name}
 %config %{_sysconfdir}/%{name}/config.yml
-%{_sysconfdir}/logrotate.d/%{name}
 %dir %{_sharedstatedir}/%{name}
 %dir %{_sharedstatedir}/%{name}/db
 %dir %{_sharedstatedir}/%{name}/src
 %dir %{_sharedstatedir}/%{name}/logs
 %dir %{_sharedstatedir}/%{name}/repos
 %dir %{_sharedstatedir}/%{name}/tarballs
+%defattr(-,root,root,-)
+%{_sysconfdir}/logrotate.d/%{name}
 
 %changelog
 * Mon Sep 28 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.2.4-0
