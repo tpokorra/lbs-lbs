@@ -86,7 +86,7 @@ install -Dpm 644 %{SOURCE5} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 %{_sysconfdir}/nginx/conf.d/%{name}.conf
 %{_sysconfdir}/uwsgi.d/%{name}.ini
 %dir %{_sysconfdir}/%{name}
-%config %{_sysconfdir}/%{name}/config.yml
+%config(noreplace) %{_sysconfdir}/%{name}/config.yml
 %dir %{_sharedstatedir}/%{name}
 %dir %{_sharedstatedir}/%{name}/db
 %dir %{_sharedstatedir}/%{name}/src
