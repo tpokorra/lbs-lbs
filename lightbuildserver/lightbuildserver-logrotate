@@ -4,6 +4,6 @@
     compress
     size 20k
     daily
-    create 0644 uwsgi uwsgi
+    create 0666 uwsgi uwsgi
 }
 
