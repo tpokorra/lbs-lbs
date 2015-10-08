@@ -2,7 +2,7 @@
 
 Name:           docker-scripts
 Version:        0.1.0
-Release:        1%{?dist}
+Release:        %{release}%{?dist}
 Summary:        Scripts for creating Docker containers
 
 License:        LGPLv2+
