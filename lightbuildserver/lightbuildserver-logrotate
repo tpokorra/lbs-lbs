@@ -8,3 +8,13 @@
     copytruncate
 }
 
+/var/log/uwsgi-req.log {
+    missingok
+    notifempty
+    compress
+    size 20k
+    daily
+    create 0666 uwsgi uwsgi
+    copytruncate
+}
+

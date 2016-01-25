@@ -1,6 +1,8 @@
 #!/bin/bash
 
 usermod -a nginx -G uwsgi
+touch /var/log/uwsgi-req.log
+chown uwsgi:uwsgi /var/log/uwsgi-req.log
 touch /var/log/uwsgi.log
 chown uwsgi:uwsgi /var/log/uwsgi.log
 touch /var/log/lbs.log
