@@ -35,6 +35,10 @@ systemctl start nginx
 systemctl enable uwsgi
 systemctl start uwsgi
 
+# enable and start mariadb
+systemctl enable mariadb
+systemctl start mariadb
+
 # enable the cronjob for processing the build queue
 if [ -z "`crontab -u uwsgi -l | grep 'process the build queue'`" ]
 then

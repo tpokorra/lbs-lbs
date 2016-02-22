@@ -23,6 +23,7 @@ Requires:       python3-PyYAML
 Requires:       uwsgi-plugin-python3
 Requires:       nginx
 Requires:       sqlite
+Requires:       python3-mysql mariadb-server
 Requires:       tar
 Requires:       rsync
 Requires:       wget
