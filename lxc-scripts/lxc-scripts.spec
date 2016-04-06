@@ -10,7 +10,7 @@ URL:            http://www.lightbuildserver.org
 Source0:        https://github.com/tpokorra/%{name}/archive/master.tar.gz
 
 BuildArch:      noarch
-Requires:       lxc lxc-templates gpg libvirt tar rsync net-tools debootstrap
+Requires:       lxc lxc-templates gpg libvirt tar rsync net-tools debootstrap cronie
 %if 0%{?rhel}%{?el6}%{?el7}
 # only require lxc-extra on Fedora
 %else
