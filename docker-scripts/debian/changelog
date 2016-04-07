@@ -1,0 +1,4 @@
+docker-scripts (0.1.0-%{release}) unstable; urgency=low
+  * initial version
+ -- Timotheus Pokorra <timotheus.pokorra@solidcharity.com>  Thu, 07 Apr 2016 22:13:18 +0200
+
