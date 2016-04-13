@@ -7,5 +7,5 @@ Homepage: http://www.solidcharity.com
 
 Package: docker-scripts
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, docker.io
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Scripts for creating Docker containers that are used by LightBuildServer to build packages for various Linux distributions
