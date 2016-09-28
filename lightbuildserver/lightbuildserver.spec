@@ -80,7 +80,7 @@ install -Dpm 644 %{SOURCE5} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 %if 0%{?rhel} < 8 || 0%{?fedora} < 24
 %{_datadir}/%{name}/lib/__pycache__/*.pyo
 %{_datadir}/%{name}/web/__pycache__/*.pyo
-$endif
+%endif
 
 %{_datadir}/%{name}/lib/__pycache__/*.pyc
 %dir %{_datadir}/%{name}/web
