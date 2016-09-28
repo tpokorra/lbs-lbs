@@ -3,7 +3,7 @@
 jobruns=`ps xaf | grep -v grep | grep processbuildqueue`
 if [ -z "$jobruns" ]
 then
-  ip4=`ip addr list eth0 | grep "inet "|cut -d' ' -f6|cut -d/ -f1`
+  ip4=`/usr/sbin/ip addr list eth0 | grep "inet "|cut -d' ' -f6|cut -d/ -f1`
   for i in `seq 1 6`
   do
     # need to check both addresses.
