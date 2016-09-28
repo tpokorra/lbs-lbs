@@ -77,7 +77,8 @@ install -Dpm 644 %{SOURCE5} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 %dir %{_datadir}/%{name}/lib/__pycache__
 
 # for python <= 3.5, still include the pyo files
-%if 0%{?rhel} < 8 || 0%{?fedora} < 24
+%if 0%{?rhel} >= 8 || 0%{?fedora} >= 24
+%else
 %{_datadir}/%{name}/lib/__pycache__/*.pyo
 %{_datadir}/%{name}/web/__pycache__/*.pyo
 %endif
