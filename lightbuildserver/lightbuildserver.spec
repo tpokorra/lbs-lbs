@@ -58,6 +58,7 @@ done
 rm %{buildroot}%{_datadir}/%{name}/web/*.sh
 rm -Rf %{buildroot}%{_datadir}/%{name}/docker-scripts
 rm -Rf %{buildroot}%{_datadir}/%{name}/lxc-scripts
+rm -Rf %{buildroot}%{_datadir}/%{name}/dply
 
 # initial config
 install -Dpm 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/nginx/conf.d/%{name}.conf
