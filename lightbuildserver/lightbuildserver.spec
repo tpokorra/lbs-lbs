@@ -20,7 +20,7 @@ BuildRequires:  python3-devel
 Requires:       python3
 Requires:       python3-bottle
 Requires:       python3-PyYAML
-Requires:       uwsgi-plugin-python3
+Requires:       uwsgi-plugin-python3 uwsgi-logger-file
 Requires:       nginx
 Requires:       sqlite
 Requires:       python3-mysql mariadb-server

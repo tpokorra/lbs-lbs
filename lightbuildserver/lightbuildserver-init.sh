@@ -15,9 +15,9 @@ etccontainerpath=/etc/lightbuildserver/container
 if [ ! -f $etccontainerpath/container_rsa ]
 then
   echo "this key will be used to login to the host for the containers."
-  echo "leave the passwort empty!"
+  echo "leaving the passwort empty!"
   mkdir -p $etccontainerpath
-  ssh-keygen -t rsa -f $etccontainerpath/container_rsa
+  ssh-keygen -t rsa -f $etccontainerpath/container_rsa -P ""
   chown -R uwsgi:uwsgi $etccontainerpath
 
   # for using the local machine as a host for the containers
