@@ -28,6 +28,8 @@ Requires:       tar
 Requires:       rsync
 Requires:       wget
 Requires:       crontabs
+Requires:       rpm-build
+Requires:       python3-copr
 
 %description
 LightBuildServer for building rpm and deb packages and running other jobs too, using Docker and LXC containers.
