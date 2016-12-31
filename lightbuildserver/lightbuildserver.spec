@@ -1,7 +1,7 @@
 %global __python %{__python3}
 
 Name:           lightbuildserver
-Version:        0.4.0
+Version:        0.5.0
 Release:        %{release}%{?dist}
 Summary:        Build packages for various Linux distributions and run nightly jobs
 
@@ -111,6 +111,9 @@ install -Dpm 644 %{SOURCE5} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 %{_sysconfdir}/logrotate.d/%{name}
 
 %changelog
+* Sat Dec 31 2016 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.5.0-0
+- new release 0.5
+
 * Thu Dec 15 2016 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.4.0-0
 - new release 0.4
 
