@@ -1,7 +1,7 @@
 %global __python %{__python3}
 
 Name:           lightbuildserver
-Version:        0.5.0
+Version:        0.6.0
 Release:        %{release}%{?dist}
 Summary:        Build packages for various Linux distributions and run nightly jobs
 
@@ -16,20 +16,33 @@ Source5:        %{name}-logrotate
 
 BuildArch:      noarch
 
+%if 0%{?rhel} >= 7
+BuildRequires:  python34-devel
+Requires:       python34
+Requires:       python34-bottle
+Requires:       python34-PyYAML
+Requires:       python34-mysql
+Requires:       python34-requests
+Requires:       python34-copr
+
+%else
 BuildRequires:  python3-devel
 Requires:       python3
 Requires:       python3-bottle
 Requires:       python3-PyYAML
+Requires:       python3-mysql
+Requires:       python3-copr
+%endif
+
 Requires:       uwsgi-plugin-python3 uwsgi-logger-file
 Requires:       nginx
 Requires:       sqlite
-Requires:       python3-mysql mariadb-server
+Requires:       mariadb-server
 Requires:       tar
 Requires:       rsync
 Requires:       wget
 Requires:       crontabs
 Requires:       rpm-build
-Requires:       python3-copr
 
 %description
 LightBuildServer for building rpm and deb packages and running other jobs too, using Docker and LXC containers.
@@ -111,6 +124,9 @@ install -Dpm 644 %{SOURCE5} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 %{_sysconfdir}/logrotate.d/%{name}
 
 %changelog
+* Sat Dec 23 2017 Timotheus Pokorra <tp@tbits.net> - 0.6.0-0
+- new release 0.6
+
 * Sat Dec 31 2016 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.5.0-0
 - new release 0.5
 
