@@ -24,6 +24,7 @@ Requires:       python34-PyYAML
 Requires:       python34-mysql
 Requires:       python34-requests
 Requires:       python34-copr
+Requires:       uwsgi-plugin-python34
 
 %else
 BuildRequires:  python3-devel
@@ -32,9 +33,10 @@ Requires:       python3-bottle
 Requires:       python3-PyYAML
 Requires:       python3-mysql
 Requires:       python3-copr
+Requires:       uwsgi-plugin-python3
 %endif
 
-Requires:       uwsgi-plugin-python3 uwsgi-logger-file
+Requires:       uwsgi-logger-file
 Requires:       nginx
 Requires:       sqlite
 Requires:       mariadb-server
