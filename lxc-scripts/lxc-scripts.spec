@@ -1,7 +1,7 @@
 %global __python %{__python3}
 
 Name:           lxc-scripts
-Version:        0.2.0
+Version:        0.3.0
 Release:        %{release}%{?dist}
 Summary:        Scripts for creating LXC containers
 
@@ -31,10 +31,11 @@ cp -a * %{buildroot}%{_datadir}/%{name}
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/*.sh
 %{_datadir}/%{name}/*.tpl
-%{_datadir}/%{name}/*.patch
 %{_datadir}/%{name}/Readme.md
 
 %changelog
+* Fri Mar 08 2019 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.3.0-0
+- drop patches for Fedora containers
 * Fri Nov 10 2017 Timotheus Pokorra <tp@tbits.net> - 0.2.0-1
 - Requires now lxc-extra for listcontainers.sh
 * Fri Jul 10 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.1.0-4
