@@ -53,7 +53,7 @@ LightBuildServer for building rpm and deb packages and running other jobs too, u
 %setup -q -n LightBuildServer-master
 
 %build
-%if 0%{?rhel} >= 8 || 0%{?fedora} >= 24
+%if 0%{?rhel} >= 7 || 0%{?fedora} >= 24
 # compile the py files
 %{__python} -m compileall -l web
 %{__python} -m compileall -l lib
@@ -96,7 +96,7 @@ install -Dpm 644 %{SOURCE5} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 %dir %{_datadir}/%{name}/lib/__pycache__
 
 # for python <= 3.5, still include the pyo files
-%if 0%{?rhel} >= 8 || 0%{?fedora} >= 24
+%if 0%{?rhel} >= 7 || 0%{?fedora} >= 24
 %else
 %{_datadir}/%{name}/lib/__pycache__/*.pyo
 %{_datadir}/%{name}/web/__pycache__/*.pyo
