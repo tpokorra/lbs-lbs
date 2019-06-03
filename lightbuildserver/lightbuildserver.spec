@@ -17,14 +17,14 @@ Source5:        %{name}-logrotate
 BuildArch:      noarch
 
 %if 0%{?rhel} >= 7
-BuildRequires:  python34-devel
-Requires:       python34
-Requires:       python34-bottle
-Requires:       python34-PyYAML
-Requires:       python34-mysql
-Requires:       python34-requests
-Requires:       python34-copr
-Requires:       uwsgi-plugin-python34
+BuildRequires:  python36-devel
+Requires:       python36
+Requires:       python36-bottle
+Requires:       python36-PyYAML
+Requires:       python36-mysql
+Requires:       python36-requests
+Requires:       python36-copr
+Requires:       uwsgi-plugin-python36
 
 %else
 BuildRequires:  python3-devel
