@@ -126,6 +126,9 @@ install -Dpm 644 %{SOURCE5} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 %defattr(-,root,root,-)
 %{_sysconfdir}/logrotate.d/%{name}
 
+%post
+sed -i "s/After=.*/After=mariadb.service/" /usr/lib/systemd/system/uwsgi.service
+
 %changelog
 * Sat Dec 23 2017 Timotheus Pokorra <tp@tbits.net> - 0.6.0-0
 - new release 0.6
