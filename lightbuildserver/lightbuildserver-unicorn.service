@@ -1,0 +1,18 @@
+[Unit]
+Description=gunicorn
+After=mariadb.service
+
+[Service]
+User=gunicorn
+Group=gunicorn
+WorkingDirectory=/usr/share/lightbuildserver/web
+ExecStart=/usr/local/bin/gunicorn --workers 4 --threads 4 --bind unix:/run/uwsgi/lightbuildserver.socket --timeout 1200 --worker-class gevent lbs:app
+
+KillSignal=SIGINT
+Restart=always
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target

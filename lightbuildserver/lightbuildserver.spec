@@ -1,7 +1,7 @@
 %global __python %{__python3}
 
 Name:           lightbuildserver
-Version:        0.6.0
+Version:        0.7.0
 Release:        %{release}%{?dist}
 Summary:        Build packages for various Linux distributions and run nightly jobs
 
@@ -9,7 +9,7 @@ License:        LGPLv2+
 URL:            http://www.lightbuildserver.org
 Source0:        https://github.com/SolidCharity/LightBuildServer/archive/master.tar.gz
 Source1:        %{name}-nginx.conf
-Source2:        %{name}-uwsgi.ini
+Source2:        %{name}-gunicorn.service
 Source3:        %{name}-init.sh
 Source4:        %{name}-cron.sh
 Source5:        %{name}-logrotate
@@ -17,14 +17,14 @@ Source5:        %{name}-logrotate
 BuildArch:      noarch
 
 %if 0%{?rhel} >= 7
-BuildRequires:  python36-devel
+BuildRequires:  python3-devel
 Requires:       python36
 Requires:       python36-bottle
 Requires:       python36-PyYAML
 Requires:       python36-mysql
 Requires:       python36-requests
-Requires:       python36-copr
-Requires:       uwsgi-plugin-python36
+Requires:       python3-pip
+Requires:       python3-copr
 
 %else
 BuildRequires:  python3-devel
@@ -32,11 +32,10 @@ Requires:       python3
 Requires:       python3-bottle
 Requires:       python3-PyYAML
 Requires:       python3-mysql
+Requires:       python3-pip
 Requires:       python3-copr
-Requires:       uwsgi-plugin-python3
 %endif
 
-Requires:       uwsgi-logger-file
 Requires:       nginx
 Requires:       sqlite
 Requires:       mariadb-server
@@ -53,11 +52,9 @@ LightBuildServer for building rpm and deb packages and running other jobs too, u
 %setup -q -n LightBuildServer-master
 
 %build
-%if 0%{?rhel} >= 7 || 0%{?fedora} >= 24
 # compile the py files
 %{__python} -m compileall -l web
 %{__python} -m compileall -l lib
-%endif
 
 %install
 install -dm 755 %{buildroot}%{_datadir}/%{name}
@@ -80,8 +77,8 @@ rm -Rf %{buildroot}%{_datadir}/%{name}/test
 
 # initial config
 install -Dpm 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/nginx/conf.d/%{name}.conf
-install -Dpm 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/uwsgi.d/%{name}.ini
 install -Dpm 644 config-sample.yml %{buildroot}%{_sysconfdir}/%{name}/config.yml
+install -Dpm 644 %{SOURCE2} %{buildroot}/usr/lib/systemd/system/lbs.service
 install -Dpm 755 %{SOURCE3} %{buildroot}%{_datadir}/%{name}/init.sh
 install -Dpm 755 %{SOURCE4} %{buildroot}%{_datadir}/%{name}/cron.sh
 install -Dpm 644 %{SOURCE5} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
@@ -94,13 +91,6 @@ install -Dpm 644 %{SOURCE5} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 %dir %{_datadir}/%{name}/lib
 %{_datadir}/%{name}/lib/*.py
 %dir %{_datadir}/%{name}/lib/__pycache__
-
-# for python <= 3.5, still include the pyo files
-%if 0%{?rhel} >= 7 || 0%{?fedora} >= 24
-%else
-%{_datadir}/%{name}/lib/__pycache__/*.pyo
-%{_datadir}/%{name}/web/__pycache__/*.pyo
-%endif
 
 %{_datadir}/%{name}/lib/__pycache__/*.pyc
 %dir %{_datadir}/%{name}/web
@@ -125,11 +115,12 @@ install -Dpm 644 %{SOURCE5} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 %dir %{_sharedstatedir}/%{name}/tarballs
 %defattr(-,root,root,-)
 %{_sysconfdir}/logrotate.d/%{name}
-
-%post
-sed -i "s/After=.*/After=mariadb.service/" /usr/lib/systemd/system/uwsgi.service
+/usr/lib/systemd/system/lbs.service
 
 %changelog
+* Mon Dec 30 2019 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.7.0-0
+- new release 0.7
+
 * Sat Dec 23 2017 Timotheus Pokorra <tp@tbits.net> - 0.6.0-0
 - new release 0.6
 

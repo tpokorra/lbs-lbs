@@ -1,12 +1,12 @@
 #!/bin/bash
 
-usermod -a nginx -G uwsgi
-touch /var/log/uwsgi-req.log
-chown uwsgi:uwsgi /var/log/uwsgi-req.log
-touch /var/log/uwsgi.log
-chown uwsgi:uwsgi /var/log/uwsgi.log
+pip3 install gunicorn
+pip3 install gunicorn[gevent]
+
+useradd --no-create-home lbs
+usermod -a nginx -G lbs
 touch /var/log/lbs.log
-chown uwsgi:uwsgi /var/log/lbs.log
+chown lbs:lbs /var/log/lbs.log
 
 # disable the default page by moving it to port 81
 sed -i "s/80 default_server/81 default_server/g" /etc/nginx/nginx.conf
@@ -18,7 +18,7 @@ then
   echo "leaving the passwort empty!"
   mkdir -p $etccontainerpath
   ssh-keygen -t rsa -f $etccontainerpath/container_rsa -P ""
-  chown -R uwsgi:uwsgi $etccontainerpath
+  chown -R lbs:lbs $etccontainerpath
 
   # for using the local machine as a host for the containers
   mkdir -p ~/.ssh
@@ -29,11 +29,11 @@ then
   echo "127.0.0.1   build01.localhost" >> /etc/hosts
 fi
 
-# enable and start nginx and uwsgi
+# enable and start nginx and lbs
 systemctl enable nginx
 systemctl start nginx
-systemctl enable uwsgi
-systemctl start uwsgi
+systemctl enable lbs
+systemctl start lbs
 
 # enable and start mariadb
 systemctl enable mariadb
