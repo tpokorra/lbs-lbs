@@ -3,7 +3,7 @@
 pip3 install gunicorn
 pip3 install gunicorn[gevent]
 
-useradd --no-create-home lbs
+useradd lbs
 usermod -a nginx -G lbs
 touch /var/log/lbs.log
 chown lbs:lbs /var/log/lbs.log
