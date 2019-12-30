@@ -40,9 +40,9 @@ systemctl enable mariadb
 systemctl start mariadb
 
 # enable the cronjob for processing the build queue
-if [ -z "`crontab -u uwsgi -l | grep 'process the build queue'`" ]
+if [ -z "`crontab -u lbs -l | grep 'process the build queue'`" ]
 then
-  crontab -u uwsgi -l | { cat; echo "# every minute, process the build queue"; echo "* * * * * /usr/share/lightbuildserver/cron.sh"; } | crontab -u uwsgi -
+  crontab -u lbs -l | { cat; echo "# every minute, process the build queue"; echo "* * * * * /usr/share/lightbuildserver/cron.sh"; } | crontab -u uwsgi -
 fi
 systemctl enable crond
 systemctl start crond
