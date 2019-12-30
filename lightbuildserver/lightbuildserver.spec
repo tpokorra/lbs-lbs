@@ -104,7 +104,6 @@ install -Dpm 644 %{SOURCE5} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 %dir %{_datadir}/%{name}/web/views
 %{_datadir}/%{name}/web/views/*.tpl
 %{_sysconfdir}/nginx/conf.d/%{name}.conf
-%{_sysconfdir}/uwsgi.d/%{name}.ini
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}/config.yml
 %dir %{_sharedstatedir}/%{name}
