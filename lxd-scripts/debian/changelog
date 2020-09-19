@@ -1,3 +1,7 @@
+lxd-scripts (0.4.2020-%{release}) unstable; urgency=low
+  * increase version number to avoid issues with ubuntu upgrade
+ -- Timotheus Pokorra <timotheus.pokorra@solidcharity.com>  Sat, 19 Sep 2020 22:13:18 +0200
+
 lxd-scripts (0.4.0-%{release}) unstable; urgency=low
   * initial version
  -- Timotheus Pokorra <timotheus.pokorra@solidcharity.com>  Fri, 06 Mar 2020 22:13:18 +0200

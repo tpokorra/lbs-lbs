@@ -1,3 +1,7 @@
+lxc-scripts (0.1.2020-%{release}) unstable; urgency=low
+  * new version for Ubuntu Focal (20.04)
+ -- Timotheus Pokorra <timotheus.pokorra@solidcharity.com>  Sat, 19 Sep 2020 22:13:18 +0200
+
 lxc-scripts (0.1.0-%{release}) unstable; urgency=low
   * initial version
  -- Timotheus Pokorra <timotheus.pokorra@solidcharity.com>  Wed, 13 Aug 2014 22:13:18 +0200

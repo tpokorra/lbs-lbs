@@ -1,6 +1,6 @@
 Format: 1.0
 Source: lxd-scripts
-Version: 0.4.0-%{release}
+Version: 0.4.2020-%{release}
 Binary: lxd-scripts
 Maintainer: Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 Architecture: any
